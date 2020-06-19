@@ -4,9 +4,6 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Strava.NET" Version="3.4.4" />
-  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="wwwroot\dist" />
