@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using MiniAppHakaton.Models;
 using MiniAppHakaton.Models.Identity;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using System;
@@ -13,6 +14,9 @@ namespace MiniAppHakaton.Data
 {
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole<int>, int, IdentityUserClaim<int>, IdentityUserRole<int>, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
+
+        public DbSet<Test> Test { get; set; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -34,6 +38,20 @@ namespace MiniAppHakaton.Data
             modelBuilder.Entity<IdentityUserLogin<int>>().ToTable("UserLogin", "identity");
             modelBuilder.Entity<IdentityUserRole<int>>().ToTable("UserRole", "identity");
             modelBuilder.Entity<IdentityUserToken<int>>().ToTable("UserToken", "identity");
+
+            modelBuilder.Entity<Models.Test>(entity =>
+            {
+                entity.ToTable("test", "test");
+                entity.Property(e => e.Id)
+                    .HasColumnType("int")
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("id");
+
+                entity.HasKey(e => e.Id).HasName("test_test_PK");
+
+                entity.Property(e => e.TestField)
+                 .HasColumnName("test_field");
+            });
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
