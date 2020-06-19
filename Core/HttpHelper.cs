@@ -46,23 +46,7 @@ namespace MiniAppHakaton.Core
             };
             return request;
         }
-        public async Task<HttpResponseMessage> SendHttpRequestMessageBodyWithCokie(HttpRequestMessage httpRequestMessage, AmoSession amoSession)
-        {
-            HttpClientHandler handler = new HttpClientHandler();
-            handler.CookieContainer = new CookieContainer();
-            handler.CookieContainer.Add(httpRequestMessage.RequestUri, new Cookie("session_id", amoSession.session_id, "/", "amocrm.ru"));
-            handler.CookieContainer.Add(httpRequestMessage.RequestUri, new Cookie("user_lang", amoSession.user_lang, "/", "amocrm.ru"));
-
-
-            HttpClient client = new HttpClient(handler);
-
-            client.DefaultRequestHeaders
-              .Accept
-              .Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            HttpResponseMessage response = await client.SendAsync(httpRequestMessage);
-            CookieCollection collection = handler.CookieContainer.GetCookies(httpRequestMessage.RequestUri);
-            return response;
-        }
+       
         public async Task<HttpResponseMessage> SendHttpRequestMessageBody(HttpRequestMessage httpRequestMessage)
         {
             var client = _clientFactory.CreateClient();
