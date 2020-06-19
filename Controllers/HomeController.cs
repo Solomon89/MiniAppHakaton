@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MiniAppHakaton.Models;
-using Strava;
 
 namespace MiniAppHakaton.Controllers
 {
@@ -34,10 +33,10 @@ namespace MiniAppHakaton.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        public JsonResult GetStravaRezult(int idActivity)
+        public async Task<JsonResult> GetStravaRezult(int idActivity)
         {
-            Activity activity = new Activity();
-            return 
+
+            return null;
         }
     }
 }
