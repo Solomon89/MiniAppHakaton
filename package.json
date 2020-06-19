@@ -1,7 +1,6 @@
 {
   "name": "webpack_config",
   "version": "2.2.8",
-  "description": "",
   "private": true,
   "scripts": {
     "build": "cross-env NODE_ENV=production WATCH=false webpack --hide-modules",
@@ -55,5 +54,15 @@
   "browserslist": [
     "cover 99.5%",
     "last 6 versions"
-  ]
+  ],
+  "main": "postcss.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Solomon89/MiniAppHakaton.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Solomon89/MiniAppHakaton/issues"
+  },
+  "homepage": "https://github.com/Solomon89/MiniAppHakaton#readme",
+  "description": ""
 }
