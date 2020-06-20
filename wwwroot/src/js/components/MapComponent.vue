@@ -1,66 +1,69 @@
 ﻿<template>
-    <div id="map"></div>
+    <div class="d-flex justify-content-center align-items-center mt-5">
+        <div id="map"></div>
+    </div>
 </template>
 
 <script>
     import ymaps from 'ymaps';
 
-    ymaps.load('https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=f8732bc7-6ffa-445d-a447-abc4f837cdac').then((maps) => {
-        var myMap = new maps.Map('map', {
-            center: [45.043330, 41.969101],
-            zoom: 13,
-            // Добавим панель маршрутизации.
-            controls: ['routePanelControl']
-        });
-
-        var control = myMap.controls.get('routePanelControl');
-
-        // Зададим состояние панели для построения машрутов.
-        control.routePanel.state.set({
-            // Тип маршрутизации.
-            type: 'pedestrian',
-            // Включим возможность задавать пункт отправления в поле ввода.
-            fromEnabled: true,
-            // Адрес или координаты пункта отправления.
-            from: 'Ставрополь, Мира 402',
-            // Включим возможность задавать пункт назначения в поле ввода.
-            toEnabled: true
-            // Адрес или координаты пункта назначения.
-            //to: '45.043330, 41.969101'
-        });
-
-        // Зададим опции панели для построения машрутов.
-        control.routePanel.options.set({
-            // Запрещаем показ кнопки, позволяющей менять местами начальную и конечную точки маршрута.
-            allowSwitch: true,
-            // Включим определение адреса по координатам клика.
-            // Адрес будет автоматически подставляться в поле ввода на панели, а также в подпись метки маршрута.
-            reverseGeocoding: true,
-            // Зададим виды маршрутизации, которые будут доступны пользователям для выбора.
-            types: {masstransit: false, pedestrian: true, taxi: false}
-        });
-
-        // Создаем кнопку, с помощью которой пользователи смогут менять местами начальную и конечную точки маршрута.
-        var switchPointsButton = new maps.control.Button({
-            data: {content: "Поменять местами", title: "Поменять точки местами"},
-            options: {selectOnClick: false, maxWidth: 160}
-        });
-        // Объявляем обработчик для кнопки.
-        switchPointsButton.events.add('click', function () {
-            // Меняет местами начальную и конечную точки маршрута.
-            control.routePanel.switchPoints();
-        });
-        myMap.controls.add(switchPointsButton);
-    }).catch(error => console.log('Failed to load Yandex Maps', error));
-
     export default {
-        name: "MapComponent"
+        name: "MapComponent",
+        data() {
+            return {
+                myMap: undefined,
+                colors: [
+                    'ff00ff',
+                    'ff0000',
+                    '00ff00',
+                    '0000ff',
+                    '000000'
+                ]
+            }
+        },
+        methods: {
+            drawPolygon(maps, coords) {
+                let myPolygon = new maps.Polygon([
+                    coords
+                ], {
+                    hintContent: "Многоугольник"
+                }, {
+                    fillColor: this.colors[Math.floor((Math.random() * this.colors.length))],
+                    strokeColor: this.colors[Math.floor((Math.random() * this.colors.length))],
+                    strokeWidth: 2,
+                    strokeOpacity: Math.random()
+                });
+
+                this.myMap.geoObjects.add(myPolygon);
+            }
+        },
+        created() {
+            ymaps.load('https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=f8732bc7-6ffa-445d-a447-abc4f837cdac').then((maps) => {
+                this.myMap = new maps.Map('map', {
+                    // center: [45.043330, 41.969101],
+                    center: [55.73, 37.75],
+                    zoom: 10,//13 ближе
+                })
+                this.drawPolygon(maps, [
+                    [55.75, 37.50],
+                    [55.80, 37.60],
+                    [55.75, 37.70],
+                    [55.70, 37.70],
+                    [55.70, 37.50],
+                    [55.75, 37.52],
+                    [55.75, 37.68],
+                    [55.65, 37.60]
+                ])
+            })
+                .catch(error => console.log('Failed to load Yandex Maps', error));
+        }
     }
 </script>
 
 <style lang="scss" scoped>
     #map {
-        width: 500px;
-        height: 500px;
+
+        width: 75vmin;
+        height: 75vmin;
     }
 </style>
