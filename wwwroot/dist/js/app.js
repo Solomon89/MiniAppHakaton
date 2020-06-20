@@ -86,6 +86,18 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "../../node_modules/@vkontakte/vk-bridge/dist/index.umd.js":
+/*!************************************************************************************************************!*\
+  !*** C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/@vkontakte/vk-bridge/dist/index.umd.js ***!
+  \************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(e,t){ true?t(exports):undefined}(this,function(e){"use strict";var a=function(){return(a=Object.assign||function(e){for(var t,n=1,o=arguments.length;n<o;n++)for(var r in t=arguments[n])Object.prototype.hasOwnProperty.call(t,r)&&(e[r]=t[r]);return e}).apply(this,arguments)};function u(){for(var e=0,t=0,n=arguments.length;t<n;t++)e+=arguments[t].length;var o=Array(e),r=0;for(t=0;t<n;t++)for(var i=arguments[t],p=0,a=i.length;p<a;p++,r++)o[r]=i[p];return o}function o(i,e){var o,r,p=(o={current:0,next:function(){return++this.current}},r={},{add:function(e,t){var n=null!=t?t:o.next();return r[n]=e,n},resolve:function(e,t,n){var o=r[e];o&&(n(t)?o.resolve(t):o.reject(t),r[e]=null)}});return e(function(e){if(e.detail&&e.detail.data&&"request_id"in e.detail.data){var t=e.detail.data,n=t.request_id,o=function(e,t){var n={};for(var o in e)Object.prototype.hasOwnProperty.call(e,o)&&t.indexOf(o)<0&&(n[o]=e[o]);if(null!=e&&"function"==typeof Object.getOwnPropertySymbols){var r=0;for(o=Object.getOwnPropertySymbols(e);r<o.length;r++)t.indexOf(o[r])<0&&Object.prototype.propertyIsEnumerable.call(e,o[r])&&(n[o[r]]=e[o[r]])}return n}(t,["request_id"]);n&&p.resolve(n,o,function(e){return!("error_type"in e)})}}),function(o,r){return void 0===r&&(r={}),new Promise(function(e,t){var n=p.add({resolve:e,reject:t},r.request_id);i(o,a(a({},r),{request_id:n}))})}}var t="undefined"!=typeof window,d=Boolean(t&&window.AndroidBridge),s=Boolean(t&&window.webkit&&window.webkit.messageHandlers&&window.webkit.messageHandlers.VKWebAppClose),f=t&&!d&&!s,n=f&&/(^\?|&)vk_platform=mobile_web(&|$)/.test(location.search),r=f?"message":"VKWebAppEvent",l=u(["VKWebAppInit","VKWebAppGetCommunityAuthToken","VKWebAppAddToCommunity","VKWebAppGetUserInfo","VKWebAppSetLocation","VKWebAppGetClientVersion","VKWebAppGetPhoneNumber","VKWebAppGetEmail","VKWebAppGetGeodata","VKWebAppSetTitle","VKWebAppGetAuthToken","VKWebAppCallAPIMethod","VKWebAppJoinGroup","VKWebAppLeaveGroup","VKWebAppAllowMessagesFromGroup","VKWebAppDenyNotifications","VKWebAppAllowNotifications","VKWebAppOpenPayForm","VKWebAppOpenApp","VKWebAppShare","VKWebAppShowWallPostBox","VKWebAppScroll","VKWebAppShowOrderBox","VKWebAppShowLeaderBoardBox","VKWebAppShowInviteBox","VKWebAppShowRequestBox","VKWebAppAddToFavorites","VKWebAppShowCommunityWidgetPreviewBox","VKWebAppShowStoryBox","VKWebAppStorageGet","VKWebAppStorageGetKeys","VKWebAppStorageSet"],f&&!n?["VKWebAppResizeWindow","VKWebAppAddToMenu"]:[]),c=t?window.AndroidBridge:void 0,b=s?window.webkit.messageHandlers:void 0;function i(e,t){var n=t||{bubbles:!1,cancelable:!1,detail:void 0},o=document.createEvent("CustomEvent");return o.initCustomEvent(e,!!n.bubbles,!!n.cancelable,n.detail),o}"undefined"==typeof window||window.CustomEvent||(window.CustomEvent=(i.prototype=Event.prototype,i));var p=function(n){var i=void 0,p=[];function e(e){p.push(e)}"undefined"!=typeof window&&"addEventListener"in window&&window.addEventListener(r,function(t){if(s||d)return u(p).map(function(e){return e.call(null,t)});if(f&&t&&t.data){var e=t.data,n=e.type,o=e.data,r=e.frameId;n&&"VKWebAppSettings"===n?i=r:u(p).map(function(e){return e({detail:{type:n,data:o}})})}});var t=o(function(e,t){c&&c[e]?c[e](JSON.stringify(t)):b&&b[e]&&"function"==typeof b[e].postMessage?b[e].postMessage(t):f&&parent.postMessage({handler:e,params:t,type:"vk-connect",webFrameId:i,connectVersion:n},"*")},e);return{send:t,sendPromise:t,subscribe:e,unsubscribe:function(e){var t=p.indexOf(e);-1<t&&p.splice(t,1)},supports:function(e){return d?!(!c||"function"!=typeof c[e]):s?!(!b||!b[e]||"function"!=typeof b[e].postMessage):f&&-1<l.indexOf(e)},isWebView:function(){return s||d}}}("2.2.2");e.applyMiddleware=function e(){for(var o=[],t=0;t<arguments.length;t++)o[t]=arguments[t];return o.includes(void 0)||o.includes(null)?e.apply(void 0,o.filter(function(e){return"function"==typeof e})):function(n){if(0===o.length)return n;var e,t={subscribe:n.subscribe,send:function(){for(var e=[],t=0;t<arguments.length;t++)e[t]=arguments[t];return n.send.apply(n,e)}};return e=o.filter(function(e){return"function"==typeof e}).map(function(e){return e(t)}).reduce(function(t,n){return function(e){return t(n(e))}})(n.send),a(a({},n),{send:e})}},e.default=p,Object.defineProperty(e,"__esModule",{value:!0})});
+
+
+/***/ }),
+
 /***/ "../../node_modules/babel-loader/lib/index.js!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/dist/cjs.js!./js/components/BaseComponent.vue?vue&type=script&lang=js&":
 /*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/babel-loader/lib!C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/vue-loader/lib??vue-loader-options!C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/source-map-loader/dist/cjs.js!./js/components/BaseComponent.vue?vue&type=script&lang=js& ***!
@@ -95,15 +107,102 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vkontakte/vk-bridge */ "../../node_modules/@vkontakte/vk-bridge/dist/index.umd.js");
+/* harmony import */ var _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _js_components_MapComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/js/components/MapComponent */ "./js/components/MapComponent.vue");
 //
 //
 //
 //
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "BaseComponent",
+  components: {
+    MapComponent: _js_components_MapComponent__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
   data: function data() {
     return {};
+  },
+  mounted: function mounted() {
+    _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_0___default.a.send('VKWebAppInit');
   }
+});
+
+/***/ }),
+
+/***/ "../../node_modules/babel-loader/lib/index.js!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/dist/cjs.js!./js/components/MapComponent.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/babel-loader/lib!C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/vue-loader/lib??vue-loader-options!C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/source-map-loader/dist/cjs.js!./js/components/MapComponent.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var ymaps__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ymaps */ "../../node_modules/ymaps/dist/ymaps.esm.js");
+//
+//
+//
+//
+
+ymaps__WEBPACK_IMPORTED_MODULE_0__["default"].load().then(function (maps) {
+  var myMap = new maps.Map('map', {
+    center: [45.043330, 41.969101],
+    zoom: 13,
+    // Добавим панель маршрутизации.
+    controls: ['routePanelControl']
+  });
+  var control = myMap.controls.get('routePanelControl'); // Зададим состояние панели для построения машрутов.
+
+  control.routePanel.state.set({
+    // Тип маршрутизации.
+    type: 'pedestrian',
+    // Включим возможность задавать пункт отправления в поле ввода.
+    fromEnabled: true,
+    // Адрес или координаты пункта отправления.
+    from: 'Ставрополь, Мира 402',
+    // Включим возможность задавать пункт назначения в поле ввода.
+    toEnabled: true // Адрес или координаты пункта назначения.
+    //to: '45.043330, 41.969101'
+
+  }); // Зададим опции панели для построения машрутов.
+
+  control.routePanel.options.set({
+    // Запрещаем показ кнопки, позволяющей менять местами начальную и конечную точки маршрута.
+    allowSwitch: true,
+    // Включим определение адреса по координатам клика.
+    // Адрес будет автоматически подставляться в поле ввода на панели, а также в подпись метки маршрута.
+    reverseGeocoding: true,
+    // Зададим виды маршрутизации, которые будут доступны пользователям для выбора.
+    types: {
+      masstransit: false,
+      pedestrian: true,
+      taxi: false
+    }
+  }); // Создаем кнопку, с помощью которой пользователи смогут менять местами начальную и конечную точки маршрута.
+
+  var switchPointsButton = new maps.control.Button({
+    data: {
+      content: "Поменять местами",
+      title: "Поменять точки местами"
+    },
+    options: {
+      selectOnClick: false,
+      maxWidth: 160
+    }
+  }); // Объявляем обработчик для кнопки.
+
+  switchPointsButton.events.add('click', function () {
+    // Меняет местами начальную и конечную точки маршрута.
+    control.routePanel.switchPoints();
+  });
+  myMap.controls.add(switchPointsButton);
+})["catch"](function (error) {
+  return console.log('Failed to load Yandex Maps', error);
+});
+/* harmony default export */ __webpack_exports__["default"] = ({
+  name: "MapComponent"
 });
 
 /***/ }),
@@ -591,7 +690,31 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div")
+  return _c("map-component")
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./js/components/MapComponent.vue?vue&type=template&id=713f44c2&scoped=true&":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/vue-loader/lib??vue-loader-options!./js/components/MapComponent.vue?vue&type=template&id=713f44c2&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "map" } })
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -12737,6 +12860,54 @@ module.exports = g;
 
 /***/ }),
 
+/***/ "../../node_modules/ymaps/dist/ymaps.esm.js":
+/*!*********************************************************************************************!*\
+  !*** C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/ymaps/dist/ymaps.esm.js ***!
+  \*********************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+var ymaps$1 = {
+  load: function load() {
+    var src = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : '//api-maps.yandex.ru/2.1/?lang=en_RU';
+
+    var getNsParamValue = function getNsParamValue() {
+      var results = src.match(/[\\?&]ns=([^&#]*)/);
+      return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    };
+
+    if (!this.promise) {
+      this.promise = new Promise(function (resolve, reject) {
+        var scriptElement = document.createElement('script');
+        scriptElement.onload = resolve;
+        scriptElement.onerror = reject;
+        scriptElement.type = 'text/javascript';
+        scriptElement.src = src;
+        document.body.appendChild(scriptElement);
+      }).then(function () {
+        var ns = getNsParamValue();
+
+        if (ns && ns !== 'ymaps') {
+          (0, eval)("var ymaps = ".concat(ns, ";"));
+        }
+
+        return new Promise(function (resolve) {
+          return ymaps.ready(resolve);
+        });
+      });
+    }
+
+    return this.promise;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ymaps$1);
+
+
+/***/ }),
+
 /***/ "./js/app.js":
 /*!*******************!*\
   !*** ./js/app.js ***!
@@ -12827,6 +12998,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseComponent_vue_vue_type_template_id_291e318a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseComponent_vue_vue_type_template_id_291e318a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./js/components/MapComponent.vue":
+/*!****************************************!*\
+  !*** ./js/components/MapComponent.vue ***!
+  \****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MapComponent_vue_vue_type_template_id_713f44c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MapComponent.vue?vue&type=template&id=713f44c2&scoped=true& */ "./js/components/MapComponent.vue?vue&type=template&id=713f44c2&scoped=true&");
+/* harmony import */ var _MapComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MapComponent.vue?vue&type=script&lang=js& */ "./js/components/MapComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "../../node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MapComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MapComponent_vue_vue_type_template_id_713f44c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MapComponent_vue_vue_type_template_id_713f44c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "713f44c2",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "js/components/MapComponent.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./js/components/MapComponent.vue?vue&type=script&lang=js&":
+/*!*****************************************************************!*\
+  !*** ./js/components/MapComponent.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_dist_cjs_js_MapComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib!../../../../node_modules/vue-loader/lib??vue-loader-options!../../../../node_modules/source-map-loader/dist/cjs.js!./MapComponent.vue?vue&type=script&lang=js& */ "../../node_modules/babel-loader/lib/index.js!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/dist/cjs.js!./js/components/MapComponent.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_dist_cjs_js_MapComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./js/components/MapComponent.vue?vue&type=template&id=713f44c2&scoped=true&":
+/*!***********************************************************************************!*\
+  !*** ./js/components/MapComponent.vue?vue&type=template&id=713f44c2&scoped=true& ***!
+  \***********************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MapComponent_vue_vue_type_template_id_713f44c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./MapComponent.vue?vue&type=template&id=713f44c2&scoped=true& */ "../../node_modules/vue-loader/lib/loaders/templateLoader.js?!../../node_modules/vue-loader/lib/index.js?!./js/components/MapComponent.vue?vue&type=template&id=713f44c2&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MapComponent_vue_vue_type_template_id_713f44c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MapComponent_vue_vue_type_template_id_713f44c2_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

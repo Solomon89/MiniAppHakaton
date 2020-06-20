@@ -5,8 +5,8 @@
 <script>
     import ymaps from 'ymaps';
 
-    ymaps.ready(function () {
-        var myMap = new ymaps.Map('map', {
+    ymaps.load().then((maps) => {
+        var myMap = new maps.Map('map', {
             center: [45.043330, 41.969101],
             zoom: 13,
             // Добавим панель маршрутизации.
@@ -37,11 +37,11 @@
             // Адрес будет автоматически подставляться в поле ввода на панели, а также в подпись метки маршрута.
             reverseGeocoding: true,
             // Зададим виды маршрутизации, которые будут доступны пользователям для выбора.
-            types: { masstransit: false, pedestrian: true, taxi: false }
+            types: {masstransit: false, pedestrian: true, taxi: false}
         });
 
         // Создаем кнопку, с помощью которой пользователи смогут менять местами начальную и конечную точки маршрута.
-        var switchPointsButton = new ymaps.control.Button({
+        var switchPointsButton = new maps.control.Button({
             data: {content: "Поменять местами", title: "Поменять точки местами"},
             options: {selectOnClick: false, maxWidth: 160}
         });
@@ -51,7 +51,7 @@
             control.routePanel.switchPoints();
         });
         myMap.controls.add(switchPointsButton);
-    });
+    }).catch(error => console.log('Failed to load Yandex Maps', error));
 
     export default {
         name: "MapComponent"
