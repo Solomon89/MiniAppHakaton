@@ -65,18 +65,18 @@ module.exports = {
         //     template: 'index.html', //Относительно входной папки(src)
         //     chunks: ['app'],    //вставляются стили и скрипты из входной точки app
         // }),
-        // new BrowserSyncPlugin(
-        //     {
-        //         // host: 'localhost',
-        //         // port: 3000,
-        //         proxy: 'http://game.vue',
-        //         notify: false
-        //     },
-        //     // plugin options
-        //     {
-        //         injectCss: true,
-        //     }
-        // ),
+        new BrowserSyncPlugin(
+            {
+                // host: 'localhost',
+                // port: 3000,
+                proxy: 'https://localhost:5001/',
+                notify: false
+            },
+            // plugin options
+            {
+                injectCss: true,
+            }
+        ),
     ],
     module: {
         rules: [
@@ -193,9 +193,9 @@ module.exports = {
     },
     mode: isDev ? 'development' : 'production',
     watch: watchMode,
-    optimization: {
-        splitChunks: {
-            chunks: 'all',
-        }
-    },
+    // optimization: {
+    //     splitChunks: {
+    //         chunks: 'all',
+    //     }
+    // },
 };
