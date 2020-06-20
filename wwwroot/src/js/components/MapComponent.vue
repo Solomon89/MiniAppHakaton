@@ -5,7 +5,7 @@
 <script>
     import ymaps from 'ymaps';
 
-    ymaps.load().then((maps) => {
+    ymaps.load('https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=f8732bc7-6ffa-445d-a447-abc4f837cdac').then((maps) => {
         var myMap = new maps.Map('map', {
             center: [45.043330, 41.969101],
             zoom: 13,
@@ -59,5 +59,8 @@
 </script>
 
 <style lang="scss" scoped>
-
+    #map {
+        width: 500px;
+        height: 500px;
+    }
 </style>
