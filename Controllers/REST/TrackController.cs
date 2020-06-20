@@ -26,22 +26,22 @@ namespace MiniAppHakaton.Controllers.REST
         [HttpGet]
         public OkObjectResult TrackQuery(object query)
         {
-            if (query!=null)
-            {
-                var trackList = new List<DTO.Track>();
-                //trackList = from TrackId in _context.UserTracks
-                //            where (UserId == query.request.data.User.Id)
-                //            select 
+            /* if (query != null)
+             {
+                 var trackList = new List<DTO.Track>();
+                 //trackList = from TrackId in _context.UserTracks
+                 //            where (UserId == query.request.data.User.Id)
+                 //            select 
 
-                trackList = from TracksPoints in _context.Track
+                 trackList = from TracksPoints in _context.Track
 
-                return Ok(trackList);
-            }
-            else
-            {
-                return 
-            }
-            
+                 return Ok(trackList);
+             }
+             else
+             {*/
+            return Ok();
+            //}
+
         }
     }
 }
