@@ -6,36 +6,28 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
 using System.Xml.Linq;
+using System.Xml.XPath;
 
 namespace MiniAppHakaton.Helpers
 {
     public class StravaTrackDeserializeHelper
     {
-        public List<Point> Test(string path)
+        public List<Point> XMLToListOfPoints(string path)
         {
             var trackPoints = new List<Point>();
-            XmlDocument xDoc = new XmlDocument();
+            XmlDocument xDoc =  new XmlDocument();
             xDoc.Load(path);
-            XmlElement xRoot = xDoc.DocumentElement;
 
-            foreach (XmlNode node in xRoot)
+            XmlNodeList points = xDoc.ChildNodes[1].ChildNodes[1].ChildNodes[4].ChildNodes;
+
+            foreach (XmlNode point in points)
             {
-                if (node.Name == "trk")
+                trackPoints.Add(new Point
                 {
-                    foreach (XmlNode pointNode in node.ChildNodes)
-                    {
-                        if (node.Name == "trkpt")
-                        {
-                            trackPoints.Add(new Point
-                            {
-                                Lat = Double.Parse( pointNode.Attributes.GetNamedItem("lat").Value, CultureInfo.InvariantCulture),
-                                Long = Double.Parse(pointNode.Attributes.GetNamedItem("lon").Value, CultureInfo.InvariantCulture)
-                            });
-                        }
-                    }
-                }
+                    Lat = Double.Parse(point.Attributes.GetNamedItem("lat").Value, CultureInfo.InvariantCulture),
+                    Lon = Double.Parse(point.Attributes.GetNamedItem("lon").Value, CultureInfo.InvariantCulture)
+                });
             }
-
 
             return trackPoints;
         }

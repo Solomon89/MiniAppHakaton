@@ -25,10 +25,10 @@ namespace MiniAppHakaton.Data
         public DbSet<TracksPoints> TracksPoints { get; set; }
         public DbSet<Building> Buildings { get; set; }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="options"></param>
+        //<summary>
+        // 
+        // </summary>
+        // <param name = "options" ></ param >
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
             Database.EnsureCreated();
@@ -59,8 +59,8 @@ namespace MiniAppHakaton.Data
 
                 entity.Property(e => e.TestField)
                  .HasColumnName("test_field");
-            }); 
-            
+            });
+
             modelBuilder.Entity<Models.Dictionary.Building>(entity =>
             {
                 entity.ToTable("building", "dictionary");
@@ -76,9 +76,9 @@ namespace MiniAppHakaton.Data
 
                 entity.Property(e => e.InfluenceRadius)
                  .HasColumnName("influence_radius");
-            }); 
-            
-            
+            });
+
+
             modelBuilder.Entity<Models.Geomethry.Point>(entity =>
             {
                 entity.ToTable("point", "geomethry");
@@ -95,7 +95,7 @@ namespace MiniAppHakaton.Data
                  .HasColumnName("lat");
 
             });
-            
+
             modelBuilder.Entity<Models.Geomethry.Track>(entity =>
             {
                 entity.ToTable("track", "geomethry");
@@ -108,13 +108,13 @@ namespace MiniAppHakaton.Data
                 entity.Property(e => e.StravaTrackId)
                  .HasColumnName("strava_track_id");
 
-            }); 
-            
+            });
+
             modelBuilder.Entity<Models.Geomethry.TracksPoints>(entity =>
             {
                 entity.ToTable("tracks_points", "geomethry");
 
-                entity.HasKey(e => new { e.TrackId, e.PointId}).HasName("geomethry_tracks_points_PK");
+                entity.HasKey(e => new { e.TrackId, e.PointId }).HasName("geomethry_tracks_points_PK");
 
 
                 entity.HasIndex(e => e.PointId);
@@ -122,7 +122,7 @@ namespace MiniAppHakaton.Data
                 entity.HasOne(p => p.Point)
                     .WithMany(c => c.TracksPoints)
                     .HasForeignKey(d => d.PointId);
-                
+
                 entity.HasIndex(e => e.TrackId);
                 entity.Property(e => e.TrackId).HasColumnName("track_Id");
                 entity.HasOne(p => p.Track)
@@ -130,19 +130,19 @@ namespace MiniAppHakaton.Data
                     .HasForeignKey(d => d.TrackId);
 
             });
-            
+
             modelBuilder.Entity<Models.Users.UserTrack>(entity =>
             {
                 entity.ToTable("user_track", "users");
 
-                entity.HasKey(e => new { e.TrackId, e.UserId}).HasName("users_user_track_PK");
+                entity.HasKey(e => new { e.TrackId, e.UserId }).HasName("users_user_track_PK");
 
                 entity.HasIndex(e => e.UserId);
                 entity.Property(e => e.UserId).HasColumnName("user_id");
                 entity.HasOne(p => p.User)
                     .WithMany(c => c.UserTracks)
                     .HasForeignKey(d => d.UserId);
-                
+
                 entity.HasIndex(e => e.TrackId);
                 entity.Property(e => e.TrackId).HasColumnName("track_Id");
                 entity.HasOne(p => p.Track)

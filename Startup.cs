@@ -41,7 +41,7 @@ namespace MiniAppHakaton
                 .AddDefaultTokenProviders();
 
 
-            services.AddTransient<Bootstrap.Bootstrap>();
+           services.AddTransient<Bootstrap.Bootstrap>();
 
 
             services.AddControllersWithViews();

@@ -20,5 +20,6 @@ namespace MiniAppHakaton.Bootstrap
         {
             applicationDbContext.Database.Migrate();
         }
+
     }
 }
