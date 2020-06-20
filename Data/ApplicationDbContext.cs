@@ -24,9 +24,18 @@ namespace MiniAppHakaton.Data
         public DbSet<Building> Buildings { get; set; }
         public DbSet<Mob> Mobs { get; set; }
         public DbSet<Skill> Skills { get; set; }
+        
+        
         public DbSet<Models.Events.Event> Events { get; set; }
+        public DbSet<Models.Events.EventBuildings> EventBuildings { get; set; }
+        public DbSet<Models.Events.EventMobs> EventMobs { get; set; }
         public DbSet<Models.Events.EventPoints> EventPoints { get; set; }
         public DbSet<Models.Events.Quest> Quests { get; set; }
+
+
+
+        public DbSet<BuildingPoints> BuildingPoints { get; set; }
+        public DbSet<MobPoints> MobPoints { get; set; }
         public DbSet<Track> Tracks { get; set; }
         public DbSet<Point> Points { get; set; }
         public DbSet<TracksPoints> TracksPoints { get; set; }
@@ -36,6 +45,7 @@ namespace MiniAppHakaton.Data
         public DbSet<UsersEvent> UsersEvents { get; set; }
         public DbSet<UserSkills> UserSkills { get; set; }
         public DbSet<UserTrack> UserTracks { get; set; }
+        public DbSet<UserBuildings> UserBuildings { get; set; }
 
         /// <summary>
         /// 
@@ -43,7 +53,7 @@ namespace MiniAppHakaton.Data
         /// <param name="options"></param>
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            Database.EnsureCreated();
+            //Database.EnsureCreated();
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -118,8 +128,15 @@ namespace MiniAppHakaton.Data
 
                 entity.HasKey(e => e.Id).HasName("dictionary_mob_PK");
 
+                entity.Property(e => e.Icon)
+                 .HasColumnName("icon").HasMaxLength(255);
+
                 entity.Property(e => e.Name)
                  .HasColumnName("name").HasMaxLength(255);
+
+                entity.Property(e => e.Icon)
+                 .HasColumnName("icon").HasMaxLength(255);
+
                 entity.Property(e => e.Reward)
                  .HasColumnName("reward");
             });
@@ -142,6 +159,49 @@ namespace MiniAppHakaton.Data
 
 
             ////////// схема Events /////////////////////
+            modelBuilder.Entity<Models.Events.EventMobs>(entity =>
+            {
+                entity.ToTable("mob", "events");
+
+                entity.HasKey(e => new { e.EventId, e.MobId }).HasName("events_mob_PK");
+
+                entity.HasIndex(e => e.EventId);
+                entity.Property(e => e.EventId).HasColumnName("event_id");
+                entity.HasOne(p => p.Event)
+                    .WithMany(c => c.EventMobs)
+                    .HasForeignKey(d => d.EventId);
+
+
+                entity.HasIndex(e => e.MobId);
+                entity.Property(e => e.MobId).HasColumnName("mob_id");
+                entity.HasOne(p => p.Mob)
+                    .WithMany(c => c.EventMobs)
+                    .HasForeignKey(d => d.MobId);
+
+            });
+
+
+            modelBuilder.Entity<Models.Events.EventBuildings>(entity =>
+            {
+                entity.ToTable("building", "events");
+
+                entity.HasKey(e => new { e.EventId, e.BuildingId }).HasName("events_building_PK");
+
+                entity.HasIndex(e => e.EventId);
+                entity.Property(e => e.EventId).HasColumnName("event_id");
+                entity.HasOne(p => p.Event)
+                    .WithMany(c => c.EventBuildings)
+                    .HasForeignKey(d => d.EventId);
+
+
+                entity.HasIndex(e => e.BuildingId);
+                entity.Property(e => e.BuildingId).HasColumnName("building_id");
+                entity.HasOne(p => p.Building)
+                    .WithMany(c => c.EventBuildings)
+                    .HasForeignKey(d => d.BuildingId);
+
+            });
+
             modelBuilder.Entity<Models.Events.Event>(entity =>
             {
                 entity.ToTable("event", "events");
@@ -239,6 +299,51 @@ namespace MiniAppHakaton.Data
 
 
             /////////////// схема geomethry //////////////////
+            modelBuilder.Entity<Models.Geomethry.BuildingPoints>(entity =>
+            {
+                entity.ToTable("building", "geomethry");
+
+                entity.HasKey(e => new { e.BuildingId, e.PointId }).HasName("geomethry_building_PK");
+
+
+                entity.HasIndex(e => e.PointId);
+                entity.Property(e => e.PointId).HasColumnName("point_id");
+                entity.HasOne(p => p.Point)
+                    .WithMany(c => c.BuildingPoints)
+                    .HasForeignKey(d => d.PointId);
+
+                entity.HasIndex(e => e.BuildingId);
+                entity.Property(e => e.BuildingId).HasColumnName("building_id");
+                entity.HasOne(p => p.Building)
+                    .WithMany(c => c.BuildingPoints)
+                    .HasForeignKey(d => d.BuildingId);
+
+            });
+            
+            
+            modelBuilder.Entity<Models.Geomethry.MobPoints>(entity =>
+            {
+                entity.ToTable("Mob", "geomethry");
+
+                entity.HasKey(e => new { e.MobId, e.PointId }).HasName("geomethry_mob_PK");
+
+
+                entity.HasIndex(e => e.PointId);
+                entity.Property(e => e.PointId).HasColumnName("point_id");
+                entity.HasOne(p => p.Point)
+                    .WithMany(c => c.MobPoints)
+                    .HasForeignKey(d => d.PointId);
+
+                entity.HasIndex(e => e.MobId);
+                entity.Property(e => e.MobId).HasColumnName("mob_id");
+                entity.HasOne(p => p.Mob)
+                    .WithMany(c => c.MobPoints)
+                    .HasForeignKey(d => d.MobId);
+
+            });
+
+
+
 
             modelBuilder.Entity<Models.Geomethry.Point>(entity =>
             {
@@ -312,7 +417,7 @@ namespace MiniAppHakaton.Data
             {
                 entity.ToTable("achivment", "users");
 
-                entity.HasKey(e => new { e.AchivmentId, e.UserId }).HasName("users_achivment_track_PK");
+                entity.HasKey(e => new { e.AchivmentId, e.UserId }).HasName("users_achivment_PK");
 
                 entity.HasIndex(e => e.UserId);
                 entity.Property(e => e.UserId).HasColumnName("user_id");
@@ -325,13 +430,32 @@ namespace MiniAppHakaton.Data
                 entity.HasOne(p => p.Achievement)
                     .WithMany(c => c.UserAchivments)
                     .HasForeignKey(d => d.AchivmentId);
+            });  
+            
+            modelBuilder.Entity<Models.Users.UserBuildings>(entity =>
+            {
+                entity.ToTable("building", "users");
+
+                entity.HasKey(e => new { e.BuildingId, e.UserId }).HasName("users_building_PK");
+
+                entity.HasIndex(e => e.UserId);
+                entity.Property(e => e.UserId).HasColumnName("user_id");
+                entity.HasOne(p => p.User)
+                    .WithMany(c => c.UserBuildings)
+                    .HasForeignKey(d => d.UserId);
+
+                entity.HasIndex(e => e.BuildingId);
+                entity.Property(e => e.BuildingId).HasColumnName("building_id");
+                entity.HasOne(p => p.Building)
+                    .WithMany(c => c.UserBuildings)
+                    .HasForeignKey(d => d.BuildingId);
             });
 
             modelBuilder.Entity<Models.Users.UsersEvent>(entity =>
             {
                 entity.ToTable("events", "users");
 
-                entity.HasKey(e => new { e.EventId, e.UserId }).HasName("users_events_track_PK");
+                entity.HasKey(e => new { e.EventId, e.UserId }).HasName("users_events_PK");
 
 
                 entity.Property(e => e.CreatedAt)
