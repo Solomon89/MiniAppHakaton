@@ -24,7 +24,7 @@ namespace MiniAppHakaton.Controllers.REST
         }
 
         [HttpGet]
-        public OkObjectResult TrackQuery(object query)
+        public IActionResult TrackQuery(object query)
         {
             if (query!=null)
             {
@@ -33,14 +33,11 @@ namespace MiniAppHakaton.Controllers.REST
                 //            where (UserId == query.request.data.User.Id)
                 //            select 
 
-                trackList = from TracksPoints in _context.Track
+                
 
                 return Ok(trackList);
             }
-            else
-            {
-                return 
-            }
+            return Ok();
             
         }
     }
