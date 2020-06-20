@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using MiniAppHakaton.Core;
 using MiniAppHakaton.Data;
+using MiniAppHakaton.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json;
 using System.Threading.Tasks;
 
 namespace MiniAppHakaton.Controllers
@@ -58,14 +60,14 @@ namespace MiniAppHakaton.Controllers
                 var response = await client.PostAsync("https://www.strava.com/oauth/token", content);
 
                 var responseString = await response.Content.ReadAsStringAsync();
-                ViewData.Model = responseString;
+                ViewData.Model = JsonSerializer.Deserialize<StravaModelToken>(responseString).access_token;
             }
             catch (Exception ex)
             {
                 ViewData.Model = ex.Message;
             }
             //// Display the status.
-           
+            
             return View();
         }
         public async Task<string> GetDataFromBody(HttpResponse Response)
