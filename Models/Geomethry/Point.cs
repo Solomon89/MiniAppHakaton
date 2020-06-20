@@ -11,5 +11,6 @@ namespace MiniAppHakaton.Models.Geomethry
         public double Lat { get; set; }
         public double Lon { get; set; }
         public ICollection<TracksPoints> TracksPoints { get; set; }
+        public ICollection<Events.EventPoints> EventPoints { get; set; }
     }
 }
