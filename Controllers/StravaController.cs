@@ -35,13 +35,13 @@ namespace MiniAppHakaton.Controllers
             /// The authenticationSchemes parameter must be set to "Strava".
             return Challenge(new AuthenticationProperties { RedirectUri = "Strava/Connected" }, "Strava");
         }
-        public IActionResult AuthInStrava()
+        [HttpGet]
+        public IActionResult AuthInStrava(int VkId)
         {
-
-            return new RedirectResult($"http://www.strava.com/oauth/authorize?client_id=49974&response_type=code&redirect_uri=http://alisaalena.ddns.net/strava/exchange_token&approval_prompt=force&scope=read,activity:read");
+            return new RedirectResult($"http://www.strava.com/oauth/authorize?client_id=49974&response_type=code&redirect_uri=http://alisaalena.ddns.net/strava/exchange_token&approval_prompt=force&scope=read,activity:read&VkI={VkId}");
         }
         private static readonly HttpClient client = new HttpClient();
-        public async Task<IActionResult> exchange_token(string state, string code, string scope)
+        public async Task<JsonResult> exchange_token(string state, string code, string scope, string VkId)
         {
             ViewData.Model = $"state {state},  code {code},  scope {scope}";
             WebRequest request = WebRequest.Create("https://www.strava.com/oauth/token");
@@ -56,19 +56,19 @@ namespace MiniAppHakaton.Controllers
             var content = new FormUrlEncodedContent(values);
             try
             {
-               
                 var response = await client.PostAsync("https://www.strava.com/oauth/token", content);
-
                 var responseString = await response.Content.ReadAsStringAsync();
-                ViewData.Model = JsonSerializer.Deserialize<StravaModelToken>(responseString).access_token;
+                StravaModelToken ModelToken = JsonSerializer.Deserialize<StravaModelToken>(responseString);
+                ViewData.Model = ModelToken.access_token;
+                //AplicatuinUser user = _userManager.Users.ToList().Find(user => user.VKId == vkId);
+                //user.
             }
             catch (Exception ex)
             {
                 ViewData.Model = ex.Message;
             }
             //// Display the status.
-            
-            return View();
+           return new JsonResult(VkId);
         }
         public async Task<string> GetDataFromBody(HttpResponse Response)
         {
