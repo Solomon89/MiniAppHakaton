@@ -20,9 +20,12 @@ namespace MiniAppHakaton.Models.Events
         public ApplicationUser CreatedBy { get; set; }
         public ApplicationUser UpdatedBy { get; set; }
 
+
         public ICollection<Events.Quest> Quests { get; set; }
         public ICollection<Events.EventPoints> EventPoints { get; set; }
         public ICollection<Users.UsersEvent> UserEvents { get; set; }
+        public ICollection<Events.EventMobs> EventMobs { get; set; }
+        public ICollection<Events.EventBuildings> EventBuildings { get; set; }
 
 
     }
