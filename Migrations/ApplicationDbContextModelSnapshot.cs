@@ -148,6 +148,52 @@ namespace MiniAppHakaton.Migrations
                     b.ToTable("UserToken","identity");
                 });
 
+            modelBuilder.Entity("MiniAppHakaton.Models.Dictionary.Achievement", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnName("name")
+                        .HasColumnType("character varying(255)")
+                        .HasMaxLength(255);
+
+                    b.HasKey("Id")
+                        .HasName("dictionary_achivment_PK");
+
+                    b.ToTable("achivment","dictionary");
+                });
+
+            modelBuilder.Entity("MiniAppHakaton.Models.Dictionary.Armor", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<double>("Damage")
+                        .HasColumnName("damage")
+                        .HasColumnType("double precision");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("name")
+                        .HasColumnType("character varying(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<double>("Price")
+                        .HasColumnName("price")
+                        .HasColumnType("double precision");
+
+                    b.HasKey("Id")
+                        .HasName("dictionary_armor_PK");
+
+                    b.ToTable("armor","dictionary");
+                });
+
             modelBuilder.Entity("MiniAppHakaton.Models.Dictionary.Building", b =>
                 {
                     b.Property<int>("Id")
@@ -169,6 +215,150 @@ namespace MiniAppHakaton.Migrations
                         .HasName("dictionary_building_PK");
 
                     b.ToTable("building","dictionary");
+                });
+
+            modelBuilder.Entity("MiniAppHakaton.Models.Dictionary.Mob", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnName("name")
+                        .HasColumnType("character varying(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<double>("Reward")
+                        .HasColumnName("reward")
+                        .HasColumnType("double precision");
+
+                    b.HasKey("Id")
+                        .HasName("dictionary_mob_PK");
+
+                    b.ToTable("mob","dictionary");
+                });
+
+            modelBuilder.Entity("MiniAppHakaton.Models.Dictionary.Skill", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnName("name")
+                        .HasColumnType("character varying(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<double>("Price")
+                        .HasColumnName("price")
+                        .HasColumnType("double precision");
+
+                    b.HasKey("Id")
+                        .HasName("dictionary_skill_PK");
+
+                    b.ToTable("skill","dictionary");
+                });
+
+            modelBuilder.Entity("MiniAppHakaton.Models.Events.Event", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnName("created_at")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int?>("CreatedById")
+                        .HasColumnName("created_by")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("EventDateTime")
+                        .HasColumnName("date_time")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("name")
+                        .HasColumnType("character varying(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<double>("Reward")
+                        .HasColumnName("reward")
+                        .HasColumnType("double precision");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnName("created_at")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<int?>("UpdatedById")
+                        .HasColumnName("updated_by")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id")
+                        .HasName("events_event_PK");
+
+                    b.HasIndex("CreatedById");
+
+                    b.HasIndex("UpdatedById");
+
+                    b.ToTable("event","events");
+                });
+
+            modelBuilder.Entity("MiniAppHakaton.Models.Events.EventPoints", b =>
+                {
+                    b.Property<long>("EventId")
+                        .HasColumnName("event_id")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("PontId")
+                        .HasColumnName("point_id")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("EventId", "PontId")
+                        .HasName("events_points_PK");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("PontId");
+
+                    b.ToTable("points","events");
+                });
+
+            modelBuilder.Entity("MiniAppHakaton.Models.Events.Quest", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnName("id")
+                        .HasColumnType("bigint")
+                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+
+                    b.Property<long>("EventId")
+                        .HasColumnName("event_id")
+                        .HasColumnType("bigint");
+
+                    b.Property<string>("Name")
+                        .HasColumnName("name")
+                        .HasColumnType("character varying(255)")
+                        .HasMaxLength(255);
+
+                    b.Property<long>("TrackId")
+                        .HasColumnName("track_id")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id")
+                        .HasName("events_quest_PK");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("TrackId");
+
+                    b.ToTable("quest","events");
                 });
 
             modelBuilder.Entity("MiniAppHakaton.Models.Geomethry.Point", b =>
@@ -201,9 +391,21 @@ namespace MiniAppHakaton.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<double>("AverageSpeed")
+                        .HasColumnName("average_speed")
+                        .HasColumnType("double precision");
+
+                    b.Property<double>("Distance")
+                        .HasColumnName("distance")
+                        .HasColumnType("double precision");
+
                     b.Property<long>("StravaTrackId")
                         .HasColumnName("strava_track_id")
                         .HasColumnType("bigint");
+
+                    b.Property<double>("Time")
+                        .HasColumnName("time")
+                        .HasColumnType("double precision");
 
                     b.HasKey("Id")
                         .HasName("geomethry_track_PK");
@@ -252,6 +454,9 @@ namespace MiniAppHakaton.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
 
+                    b.Property<double>("Gold")
+                        .HasColumnType("double precision");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");
 
@@ -297,22 +502,44 @@ namespace MiniAppHakaton.Migrations
                     b.ToTable("User","identity");
                 });
 
-            modelBuilder.Entity("MiniAppHakaton.Models.Test", b =>
+            modelBuilder.Entity("MiniAppHakaton.Models.Users.UserAchivment", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("id")
-                        .HasColumnType("int")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                    b.Property<long>("AchivmentId")
+                        .HasColumnName("achivment_id")
+                        .HasColumnType("bigint");
 
-                    b.Property<string>("TestField")
-                        .HasColumnName("test_field")
-                        .HasColumnType("text");
+                    b.Property<int>("UserId")
+                        .HasColumnName("user_id")
+                        .HasColumnType("integer");
 
-                    b.HasKey("Id")
-                        .HasName("test_test_PK");
+                    b.HasKey("AchivmentId", "UserId")
+                        .HasName("users_achivment_track_PK");
 
-                    b.ToTable("test","test");
+                    b.HasIndex("AchivmentId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("achivment","users");
+                });
+
+            modelBuilder.Entity("MiniAppHakaton.Models.Users.UserSkills", b =>
+                {
+                    b.Property<long>("SkillId")
+                        .HasColumnName("skill_Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("UserId")
+                        .HasColumnName("user_id")
+                        .HasColumnType("integer");
+
+                    b.HasKey("SkillId", "UserId")
+                        .HasName("users_skills_PK");
+
+                    b.HasIndex("SkillId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("skill","users");
                 });
 
             modelBuilder.Entity("MiniAppHakaton.Models.Users.UserTrack", b =>
@@ -333,6 +560,41 @@ namespace MiniAppHakaton.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("user_track","users");
+                });
+
+            modelBuilder.Entity("MiniAppHakaton.Models.Users.UsersEvent", b =>
+                {
+                    b.Property<long>("EventId")
+                        .HasColumnName("event_id")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("UserId")
+                        .HasColumnName("user_id")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnName("created_at")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("State")
+                        .HasColumnName("state")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnName("updated_at")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.HasKey("EventId", "UserId")
+                        .HasName("users_events_track_PK");
+
+                    b.HasIndex("EventId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("events","users");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<int>", b =>
@@ -386,6 +648,47 @@ namespace MiniAppHakaton.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MiniAppHakaton.Models.Events.Event", b =>
+                {
+                    b.HasOne("MiniAppHakaton.Models.Identity.ApplicationUser", "CreatedBy")
+                        .WithMany("CreatedEvents")
+                        .HasForeignKey("CreatedById");
+
+                    b.HasOne("MiniAppHakaton.Models.Identity.ApplicationUser", "UpdatedBy")
+                        .WithMany("UpdatedEvents")
+                        .HasForeignKey("UpdatedById");
+                });
+
+            modelBuilder.Entity("MiniAppHakaton.Models.Events.EventPoints", b =>
+                {
+                    b.HasOne("MiniAppHakaton.Models.Events.Event", "Event")
+                        .WithMany("EventPoints")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MiniAppHakaton.Models.Geomethry.Point", "Point")
+                        .WithMany("EventPoints")
+                        .HasForeignKey("PontId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MiniAppHakaton.Models.Events.Quest", b =>
+                {
+                    b.HasOne("MiniAppHakaton.Models.Events.Event", "Event")
+                        .WithMany("Quests")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MiniAppHakaton.Models.Geomethry.Track", "Track")
+                        .WithMany("Quests")
+                        .HasForeignKey("TrackId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("MiniAppHakaton.Models.Geomethry.TracksPoints", b =>
                 {
                     b.HasOne("MiniAppHakaton.Models.Geomethry.Point", "Point")
@@ -401,6 +704,36 @@ namespace MiniAppHakaton.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("MiniAppHakaton.Models.Users.UserAchivment", b =>
+                {
+                    b.HasOne("MiniAppHakaton.Models.Dictionary.Achievement", "Achievement")
+                        .WithMany("UserAchivments")
+                        .HasForeignKey("AchivmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MiniAppHakaton.Models.Identity.ApplicationUser", "User")
+                        .WithMany("UserAchivments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MiniAppHakaton.Models.Users.UserSkills", b =>
+                {
+                    b.HasOne("MiniAppHakaton.Models.Dictionary.Skill", "Skill")
+                        .WithMany("UserSkills")
+                        .HasForeignKey("SkillId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MiniAppHakaton.Models.Identity.ApplicationUser", "User")
+                        .WithMany("UserSkills")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("MiniAppHakaton.Models.Users.UserTrack", b =>
                 {
                     b.HasOne("MiniAppHakaton.Models.Geomethry.Track", "Track")
@@ -411,6 +744,21 @@ namespace MiniAppHakaton.Migrations
 
                     b.HasOne("MiniAppHakaton.Models.Identity.ApplicationUser", "User")
                         .WithMany("UserTracks")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MiniAppHakaton.Models.Users.UsersEvent", b =>
+                {
+                    b.HasOne("MiniAppHakaton.Models.Events.Event", "Event")
+                        .WithMany("UserEvents")
+                        .HasForeignKey("EventId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MiniAppHakaton.Models.Identity.ApplicationUser", "User")
+                        .WithMany("UsersEvents")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
