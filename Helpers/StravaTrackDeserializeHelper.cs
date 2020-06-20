@@ -1,41 +1,43 @@
 ﻿using MiniAppHakaton.Models.Geomethry;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Xml.Linq;
 
 namespace MiniAppHakaton.Helpers
 {
     public class StravaTrackDeserializeHelper
     {
-        public Point Test(string path)
+        public List<Point> Test(string path)
         {
-            var point = new Point();
+            var trackPoints = new List<Point>();
             XmlDocument xDoc = new XmlDocument();
             xDoc.Load(path);
             XmlElement xRoot = xDoc.DocumentElement;
-            foreach (XmlNode xnode in xRoot)
+
+            foreach (XmlNode node in xRoot)
             {
-                // получаем атрибут name
-                if (xnode.Attributes.Count > 0)
+                if (node.Name == "trk")
                 {
-                    XmlNode attr = xnode.Attributes.GetNamedItem("name");
-                }
-                // обходим все дочерние узлы элемента user
-                foreach (XmlNode childnode in xnode.ChildNodes)
-                {
-                    // если узел - company
-                    if (childnode.Name == "company")
+                    foreach (XmlNode pointNode in node.ChildNodes)
                     {
-                    }
-                    // если узел age
-                    if (childnode.Name == "age")
-                    {
+                        if (node.Name == "trkpt")
+                        {
+                            trackPoints.Add(new Point
+                            {
+                                Lat = Double.Parse( pointNode.Attributes.GetNamedItem("lat").Value, CultureInfo.InvariantCulture),
+                                Long = Double.Parse(pointNode.Attributes.GetNamedItem("lon").Value, CultureInfo.InvariantCulture)
+                            });
+                        }
                     }
                 }
-                Console.WriteLine();
             }
+
+
+            return trackPoints;
         }
     }
 }
