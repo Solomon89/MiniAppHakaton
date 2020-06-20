@@ -15,6 +15,7 @@ const namingPattern = '[name]';
 
 //настройки
 const work_folder_name = "wwwroot/src";
+// const output_folder_name = "wwwroot/dist";
 const output_folder_name = "wwwroot/dist";
 
 const PATHS = {
@@ -174,11 +175,11 @@ module.exports = {
             },
             {
                 // assets
-                test: /\.(png|jpg|gif|svg|woff(2)?|ttf|eot|mp3)$/,
+                test: /\.(png|jpg|gif|ico|svg|woff(2)?|ttf|eot|mp3)$/,
                 loader: "file-loader",
                 options: {
                     name: `${namingPattern}.[ext]`,
-                    outputPath: 'static'
+                    outputPath: '../dist/static'
                 }
             },
 
