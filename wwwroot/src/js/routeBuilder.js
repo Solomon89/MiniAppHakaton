@@ -44,4 +44,5 @@ ymaps.ready(function () {
         control.routePanel.switchPoints();
     });
     myMap.controls.add(switchPointsButton);
+    myMap.container.fitToViewport();
 });
