@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using MiniAppHakaton.Data;
+using MiniAppHakaton.DTO;
+using MiniAppHakaton.Models.Geomethry;
+using MiniAppHakaton.Models.Users;
 
 namespace MiniAppHakaton.Controllers.REST
 {
@@ -21,11 +24,24 @@ namespace MiniAppHakaton.Controllers.REST
         }
 
         [HttpGet]
-        public OkObjectResult TrackQuery()
+        public OkObjectResult TrackQuery(object query)
         {
-            var trackList = new List<DTO.Track>();
+            if (query!=null)
+            {
+                var trackList = new List<DTO.Track>();
+                //trackList = from TrackId in _context.UserTracks
+                //            where (UserId == query.request.data.User.Id)
+                //            select 
 
-            return Ok(trackList);
+                trackList = from TracksPoints in _context.Track
+
+                return Ok(trackList);
+            }
+            else
+            {
+                return 
+            }
+            
         }
     }
 }
