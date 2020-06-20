@@ -7,8 +7,14 @@ namespace MiniAppHakaton.Models.Dictionary
 {
     public class Building
     {
-        public int Id { get; set; }
+        public long Id { get; set; }
         public string Name { get; set; }
         public double InfluenceRadius { get; set; }
+        public string Icon { get; set; }
+
+        public ICollection<Geomethry.BuildingPoints> BuildingPoints { get; set; }
+        public ICollection<Events.EventBuildings> EventBuildings { get; set; }
+        public ICollection<Users.UserBuildings> UserBuildings { get; set; }
+
     }
 }
