@@ -5,16 +5,10 @@ using System.Threading.Tasks;
 
 namespace MiniAppHakaton.DTO
 {
-    [Serializable]
-    public class StravaTrack
+    public class Point
     {
-        public StravaTrack()
-        {
-         
-
-        }
+        public long Id { get; set; }
         public double Lat { get; set; }
         public double Lon { get; set; }
-
     }
 }
