@@ -1,0 +1,21 @@
+﻿
+@{ 
+    ViewData["Title"] = "Маршрут на карте";
+}
+
+<head>    
+    <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU&amp;apikey=f8732bc7-6ffa-445d-a447-abc4f837cdac" type="text/javascript"></script>
+    <script src="https://yandex.st/jquery/2.2.3/jquery.min.js" type="text/javascript"></script>
+    <script src="wwwroot/dist/js/routeBuilder.js" type="text/javascript"></script>
+    <style>
+        html, body, #map { 
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<h1>@ViewData["Title"]</h1>
+<div id="map"></div>
+

@@ -6,7 +6,6 @@
 
 
   <ItemGroup>
-    <Folder Include="wwwroot\dist" />
     <Folder Include="wwwroot\src\assets" />
     <Folder Include="Repositories\" />
     <Folder Include="Interfaces\" />
