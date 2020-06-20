@@ -24,7 +24,7 @@ namespace MiniAppHakaton.Controllers.REST
         }
 
         [HttpGet]
-        public OkObjectResult TrackQuery(object query)
+        public IActionResult TrackQuery(object query)
         {
             /* if (query != null)
              {
