@@ -12606,13 +12606,10 @@ h3 {
     border-color: #dee2e6;
   }
 }
-.container {
-  height: auto;
-  width: 100%;
-}
 #map[data-v-713f44c2] {
-  width: 75vmin;
-  height: 75vmin;
+  width: 100%;
+  min-height: 600px;
+  height: auto;
 }
 
 /*# sourceMappingURL=app.css.map*/
