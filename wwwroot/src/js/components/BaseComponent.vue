@@ -3,6 +3,7 @@
 </template>
 
 <script>
+    import bridge from '@vkontakte/vk-bridge';
     export default {
         name: "BaseComponent",
         data(){
@@ -10,7 +11,9 @@
                 
             }
         },
-        
+        mounted() {
+            bridge.send('VKWebAppInit');  
+        },
     }
 </script>
 
