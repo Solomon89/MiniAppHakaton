@@ -25,9 +25,6 @@ namespace MiniAppHakaton.Controllers
 
         public IActionResult Index()
         {
-            _context.Test.Add(new Test { TestField = "test" });
-            _context.SaveChanges();
-            var test = _context.Test.ToList();
             return View();
         }
 
