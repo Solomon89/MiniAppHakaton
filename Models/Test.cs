@@ -9,6 +9,5 @@ namespace MiniAppHakaton.Models
     {
         public int Id { get; set; }
         public string TestField { get; set; }
-
     }
 }
