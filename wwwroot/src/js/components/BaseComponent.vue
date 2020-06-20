@@ -1,9 +1,10 @@
 ﻿<template>
     <div v-if="!has_errors" class="base">
         <div class="cover-wrapper">
-            <nav-bar-component :profile-name="currentUserInfo.hasOwnProperty('first_name')?currentUserInfo.first_name:''" :profile-photo-url="currentUserInfo.photo_100"></nav-bar-component>
+            <nav-bar-component :vk-id="currentUserInfo.id" :profile-name="currentUserInfo.hasOwnProperty('first_name')?currentUserInfo.first_name:''" :profile-photo-url="currentUserInfo.photo_100"></nav-bar-component>
         </div>
         <map-component :location="currentUserLocation"></map-component>
+        <notification-component v-if="!is_strava_auth" title_text="Нужна авторизация" :vk-id="currentUserInfo.id" @closed="is_strava_auth=true"></notification-component>
     </div>
     <div v-else class="alert-danger">
         {{currentUserLocation.error_data.error_reason}}
@@ -14,15 +15,17 @@
     import bridge from '@vkontakte/vk-bridge';
     import MapComponent from "@/js/components/MapComponent";
     import NavBarComponent from "@/js/components/NavBarComponent";
+    import NotificationComponent from "@/js/components/NotificationComponent";
 
     export default {
         name: "BaseComponent",
-        components: {NavBarComponent, MapComponent},
+        components: {NotificationComponent, NavBarComponent, MapComponent},
         data() {
             return {
                 currentUserInfo: {},
                 currentUserLocation: {},
-                has_errors: false
+                has_errors: false,
+                is_strava_auth:false
             }
         },
         async created() {

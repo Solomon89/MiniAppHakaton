@@ -1,4 +1,5 @@
 import '@/scss/styles.scss';
+import 'bootstrap'
 import Vue from 'vue';
 import BaseComponent from "@/js/components/BaseComponent";
 

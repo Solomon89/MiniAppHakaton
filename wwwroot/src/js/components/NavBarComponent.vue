@@ -9,12 +9,10 @@
                 <img :src="profilePhotoUrl" alt="Ваше фото">
             </div>
             <span class="h2 mb-5 mt-1">Здравствуйте, {{profileName}}</span>
-            
+
             <ul>
-                <li><a>About</a></li>
-                <li><a>Portfolio</a></li>
-                <li><a>Services</a></li>
-                <li><a>Contact</a></li>
+                <li><a :href="authUrl">Войти в STRAVA</a></li>
+                <li><a>Загрузить мои последние маршруты</a></li>
             </ul>
         </nav>
 
@@ -26,7 +24,9 @@
         name: "NavBarComponent",
         props: {
             profilePhotoUrl: String,
-            profileName: String
+            profileName: String,
+            vkId: Number
+
         },
         mounted() {
             let hamburger = {
@@ -47,6 +47,11 @@
             };
 
             hamburger.initialize();
+        },
+        computed: {
+            authUrl() {
+                return `Strava/AuthInStrava?VkId=${this.vkId}`
+            }
         }
     }
 </script>
@@ -54,7 +59,7 @@
 <style lang="scss" scoped>
     .nav-wrapper {
         z-index: 3;
-        
+
     }
 
     /* colors */
@@ -105,7 +110,7 @@
         -webkit-transform: $transform;
         transform: $transform;
     }
-    
+
     a {
         color: inherit;
         cursor: pointer;
@@ -188,6 +193,7 @@
         transition: left .5s;
         width: $nav-width;
         z-index: $nav-z-index;
+
         &.expanded {
             left: 0;
         }

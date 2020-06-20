@@ -12727,6 +12727,9 @@ a[data-v-72ee52bc]:hover {
   margin: 0 0 auto;
   padding: 0;
 }
+.modal[data-v-e8168f3e] {
+  display: block;
+}
 .cover-wrapper[data-v-291e318a] {
   /*pointer-events: none;*/
   position: absolute;
