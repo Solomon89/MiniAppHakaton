@@ -74,6 +74,39 @@
                 // Добавляем линию на карту.
                 this.myMap.geoObjects.add(myPolyline);
 
+            },
+            drawCircle(ymaps, coords,radius,hintContent,balloonContent){
+                // Создаем круг.
+                let myCircle = new ymaps.Circle([
+                    // Координаты центра круга.
+                    coords,
+                    // Радиус круга в метрах.
+                    radius
+                ], {
+                    // Описываем свойства круга.
+                    // Содержимое балуна.
+                    balloonContent: balloonContent,
+                    // Содержимое хинта.
+                    hintContent: hintContent
+                }, {
+                    // Задаем опции круга.
+                    // Включаем возможность перетаскивания круга.
+                    draggable: false,
+                    // Цвет заливки.
+                    // Последний байт (77) определяет прозрачность.
+                    // Прозрачность заливки также можно задать используя опцию "fillOpacity".
+                    fillColor: this.colors[Math.floor((Math.random() * this.colors.length))],
+                    // Цвет обводки.
+                    strokeColor: this.colors[Math.floor((Math.random() * this.colors.length))],
+                    // Прозрачность обводки.
+                    fillOpacity:0.4,
+                    strokeOpacity: 0.4,
+                    // Ширина обводки в пикселях.
+                    strokeWidth: 2
+                });
+
+                // Добавляем круг на карту.
+                this.myMap.geoObjects.add(myCircle);
             }
         },
         async created() {

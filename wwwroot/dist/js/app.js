@@ -107,9 +107,28 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @vkontakte/vk-bridge */ "../../node_modules/@vkontakte/vk-bridge/dist/index.umd.js");
-/* harmony import */ var _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _js_components_MapComponent__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/js/components/MapComponent */ "./js/components/MapComponent.vue");
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.object.to-string */ "../../node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.promise */ "../../node_modules/core-js/modules/es.promise.js");
+/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! regenerator-runtime/runtime */ "../../node_modules/regenerator-runtime/runtime.js");
+/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vkontakte/vk-bridge */ "../../node_modules/@vkontakte/vk-bridge/dist/index.umd.js");
+/* harmony import */ var _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _js_components_MapComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/js/components/MapComponent */ "./js/components/MapComponent.vue");
+
+
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+//
+//
+//
+//
+//
 //
 //
 //
@@ -119,13 +138,38 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "BaseComponent",
   components: {
-    MapComponent: _js_components_MapComponent__WEBPACK_IMPORTED_MODULE_1__["default"]
+    MapComponent: _js_components_MapComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
   },
   data: function data() {
-    return {};
+    return {
+      currentUserInfo: undefined
+    };
   },
-  mounted: function mounted() {
-    _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_0___default.a.send('VKWebAppInit');
+  created: function created() {
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_3___default.a.send('VKWebAppInit');
+
+            case 2:
+              _context.next = 4;
+              return _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_3___default.a.send('VKWebAppGetUserInfo');
+
+            case 4:
+              _this.currentUserInfo = _context.sent;
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   }
 });
 
@@ -221,6 +265,35 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }); // Добавляем линию на карту.
 
       this.myMap.geoObjects.add(myPolyline);
+    },
+    drawCircle: function drawCircle(ymaps, coords, radius, hintContent, balloonContent) {
+      // Создаем круг.
+      var myCircle = new ymaps.Circle([// Координаты центра круга.
+      coords, // Радиус круга в метрах.
+      radius], {
+        // Описываем свойства круга.
+        // Содержимое балуна.
+        balloonContent: balloonContent,
+        // Содержимое хинта.
+        hintContent: hintContent
+      }, {
+        // Задаем опции круга.
+        // Включаем возможность перетаскивания круга.
+        draggable: false,
+        // Цвет заливки.
+        // Последний байт (77) определяет прозрачность.
+        // Прозрачность заливки также можно задать используя опцию "fillOpacity".
+        fillColor: this.colors[Math.floor(Math.random() * this.colors.length)],
+        // Цвет обводки.
+        strokeColor: this.colors[Math.floor(Math.random() * this.colors.length)],
+        // Прозрачность обводки.
+        fillOpacity: 0.4,
+        strokeOpacity: 0.4,
+        // Ширина обводки в пикселях.
+        strokeWidth: 2
+      }); // Добавляем круг на карту.
+
+      this.myMap.geoObjects.add(myCircle);
     }
   },
   created: function created() {
@@ -13459,6 +13532,17 @@ return jQuery;
 
 /***/ }),
 
+/***/ "../../node_modules/mini-css-extract-plugin/dist/loader.js?!../../node_modules/css-loader/dist/cjs.js?!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/postcss-loader/src/index.js?!../../node_modules/resolve-url-loader/index.js?!../../node_modules/sass-loader/dist/cjs.js?!../../node_modules/vue-loader/lib/index.js?!./js/components/BaseComponent.vue?vue&type=style&index=0&id=291e318a&scoped=true&lang=scss&":
+/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-0!C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/css-loader/dist/cjs.js??ref--6-1!C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/vue-loader/lib/loaders/stylePostLoader.js!C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/postcss-loader/src??ref--6-2!C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/resolve-url-loader??ref--6-3!C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/sass-loader/dist/cjs.js??ref--6-4!C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/vue-loader/lib??vue-loader-options!./js/components/BaseComponent.vue?vue&type=style&index=0&id=291e318a&scoped=true&lang=scss& ***!
+  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+// extracted by mini-css-extract-plugin
+
+/***/ }),
+
 /***/ "../../node_modules/mini-css-extract-plugin/dist/loader.js?!../../node_modules/css-loader/dist/cjs.js?!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/postcss-loader/src/index.js?!../../node_modules/resolve-url-loader/index.js?!../../node_modules/sass-loader/dist/cjs.js?!../../node_modules/vue-loader/lib/index.js?!./js/components/MapComponent.vue?vue&type=style&index=0&id=713f44c2&lang=scss&scoped=true&":
 /*!***************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-0!C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/css-loader/dist/cjs.js??ref--6-1!C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/vue-loader/lib/loaders/stylePostLoader.js!C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/postcss-loader/src??ref--6-2!C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/resolve-url-loader??ref--6-3!C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/sass-loader/dist/cjs.js??ref--6-4!C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/vue-loader/lib??vue-loader-options!./js/components/MapComponent.vue?vue&type=style&index=0&id=713f44c2&lang=scss&scoped=true& ***!
@@ -14693,7 +14777,20 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("map-component")
+  return _c(
+    "div",
+    { staticClass: "base" },
+    [
+      _c("div", { staticClass: "cover-wrapper" }, [
+        _c("span", { staticClass: "h2" }, [
+          _vm._v("Здравствуйте, " + _vm._s(_vm.currentUserInfo.first_name))
+        ])
+      ]),
+      _vm._v(" "),
+      _c("map-component")
+    ],
+    1
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -26988,7 +27085,9 @@ new vue__WEBPACK_IMPORTED_MODULE_1__["default"]({
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _BaseComponent_vue_vue_type_template_id_291e318a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./BaseComponent.vue?vue&type=template&id=291e318a&scoped=true& */ "./js/components/BaseComponent.vue?vue&type=template&id=291e318a&scoped=true&");
 /* harmony import */ var _BaseComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BaseComponent.vue?vue&type=script&lang=js& */ "./js/components/BaseComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "../../node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _BaseComponent_vue_vue_type_style_index_0_id_291e318a_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./BaseComponent.vue?vue&type=style&index=0&id=291e318a&scoped=true&lang=scss& */ "./js/components/BaseComponent.vue?vue&type=style&index=0&id=291e318a&scoped=true&lang=scss&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "../../node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
 
 
 
@@ -26996,7 +27095,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
   _BaseComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _BaseComponent_vue_vue_type_template_id_291e318a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _BaseComponent_vue_vue_type_template_id_291e318a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
@@ -27025,6 +27124,22 @@ component.options.__file = "js/components/BaseComponent.vue"
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_dist_cjs_js_BaseComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib!../../../../node_modules/vue-loader/lib??vue-loader-options!../../../../node_modules/source-map-loader/dist/cjs.js!./BaseComponent.vue?vue&type=script&lang=js& */ "../../node_modules/babel-loader/lib/index.js!../../node_modules/vue-loader/lib/index.js?!../../node_modules/source-map-loader/dist/cjs.js!./js/components/BaseComponent.vue?vue&type=script&lang=js&");
 /* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_node_modules_vue_loader_lib_index_js_vue_loader_options_node_modules_source_map_loader_dist_cjs_js_BaseComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./js/components/BaseComponent.vue?vue&type=style&index=0&id=291e318a&scoped=true&lang=scss&":
+/*!***************************************************************************************************!*\
+  !*** ./js/components/BaseComponent.vue?vue&type=style&index=0&id=291e318a&scoped=true&lang=scss& ***!
+  \***************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_0_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_resolve_url_loader_index_js_ref_6_3_node_modules_sass_loader_dist_cjs_js_ref_6_4_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseComponent_vue_vue_type_style_index_0_id_291e318a_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/mini-css-extract-plugin/dist/loader.js??ref--6-0!../../../../node_modules/css-loader/dist/cjs.js??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/resolve-url-loader??ref--6-3!../../../../node_modules/sass-loader/dist/cjs.js??ref--6-4!../../../../node_modules/vue-loader/lib??vue-loader-options!./BaseComponent.vue?vue&type=style&index=0&id=291e318a&scoped=true&lang=scss& */ "../../node_modules/mini-css-extract-plugin/dist/loader.js?!../../node_modules/css-loader/dist/cjs.js?!../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../node_modules/postcss-loader/src/index.js?!../../node_modules/resolve-url-loader/index.js?!../../node_modules/sass-loader/dist/cjs.js?!../../node_modules/vue-loader/lib/index.js?!./js/components/BaseComponent.vue?vue&type=style&index=0&id=291e318a&scoped=true&lang=scss&");
+/* harmony import */ var _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_0_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_resolve_url_loader_index_js_ref_6_3_node_modules_sass_loader_dist_cjs_js_ref_6_4_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseComponent_vue_vue_type_style_index_0_id_291e318a_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_0_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_resolve_url_loader_index_js_ref_6_3_node_modules_sass_loader_dist_cjs_js_ref_6_4_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseComponent_vue_vue_type_style_index_0_id_291e318a_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_0_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_resolve_url_loader_index_js_ref_6_3_node_modules_sass_loader_dist_cjs_js_ref_6_4_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseComponent_vue_vue_type_style_index_0_id_291e318a_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_0_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_resolve_url_loader_index_js_ref_6_3_node_modules_sass_loader_dist_cjs_js_ref_6_4_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseComponent_vue_vue_type_style_index_0_id_291e318a_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_mini_css_extract_plugin_dist_loader_js_ref_6_0_node_modules_css_loader_dist_cjs_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_resolve_url_loader_index_js_ref_6_3_node_modules_sass_loader_dist_cjs_js_ref_6_4_node_modules_vue_loader_lib_index_js_vue_loader_options_BaseComponent_vue_vue_type_style_index_0_id_291e318a_scoped_true_lang_scss___WEBPACK_IMPORTED_MODULE_0___default.a); 
 
 /***/ }),
 

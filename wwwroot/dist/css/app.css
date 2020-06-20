@@ -12611,5 +12611,9 @@ h3 {
   min-height: 600px;
   height: auto;
 }
+.cover-wrapper[data-v-291e318a] {
+  position: absolute;
+  z-index: 1;
+}
 
 /*# sourceMappingURL=app.css.map*/
