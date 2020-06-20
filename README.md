@@ -11,4 +11,4 @@ tscofig.ts необходимо закинуть в папку /vs
 
 используете vk tunnel
 
-https://vk.com/app7517020?run_hash=afea93fa7eb5650927
+Собранное и работающее приложение: https://vk.com/app7517020?run_hash=afea93fa7eb5650927
