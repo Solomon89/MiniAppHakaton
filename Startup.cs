@@ -40,6 +40,10 @@ namespace MiniAppHakaton
                 .AddRoles<IdentityRole<int>>()
                 .AddDefaultTokenProviders();
 
+
+            services.AddTransient<Bootstrap.Bootstrap>();
+
+
             services.AddControllersWithViews();
 
             services.AddSwaggerGen(c =>
@@ -52,6 +56,8 @@ namespace MiniAppHakaton
                 c.IncludeXmlComments(xmlPath);
             });
             services.ConfigureSwaggerGen(options => { options.CustomSchemaIds(x => x.FullName); });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
