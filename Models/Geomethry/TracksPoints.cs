@@ -7,6 +7,7 @@ namespace MiniAppHakaton.Models.Geomethry
 {
     public class TracksPoints
     {
+        
         public long TrackId { get; set; }
         public long PointId { get; set; }
 
