@@ -8,5 +8,6 @@ namespace MiniAppHakaton.Models.Identity
 {
     public class ApplicationUser : IdentityUser<int>
     {
+        public ICollection<Users.UserTrack> UserTracks { get; set; }
     }
 }

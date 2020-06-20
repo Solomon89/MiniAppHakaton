@@ -42,6 +42,10 @@ namespace MiniAppHakaton
                 .AddRoles<IdentityRole<int>>()
                 .AddDefaultTokenProviders();
 
+
+            services.AddTransient<Bootstrap.Bootstrap>();
+
+
             services.AddControllersWithViews();
 
             services.AddSwaggerGen(c =>
@@ -54,17 +58,8 @@ namespace MiniAppHakaton
                 c.IncludeXmlComments(xmlPath);
             });
             services.ConfigureSwaggerGen(options => { options.CustomSchemaIds(x => x.FullName); });
-            services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-            })
-            .AddCookie()
-            .AddStrava(options =>
-            {
-                options.ClientId = Configuration.GetValue<int>("49974").ToString();
-                options.ClientSecret = Configuration.GetValue<string>("1c65ed360b40e351d59a9f4e5081fbe7b4bb87cf ");
-            });
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
