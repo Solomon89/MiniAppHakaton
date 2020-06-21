@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using MiniAppHakaton.Core;
 using MiniAppHakaton.Data;
 using MiniAppHakaton.Models;
+using MiniAppHakaton.Models.Identity;
 using MiniAppHakaton.Models.Strava;
 using System;
 using System.Collections.Generic;
@@ -39,10 +40,10 @@ namespace MiniAppHakaton.Controllers
         [HttpGet]
         public IActionResult AuthInStrava(int VkId)
         {
-            return new RedirectResult($"http://www.strava.com/oauth/authorize?client_id=49974&response_type=code&redirect_uri=http://alisaalena.ddns.net/strava/exchange_token&approval_prompt=force&scope=read,activity:read&VkI={VkId}");
+            return new RedirectResult($"http://www.strava.com/oauth/authorize?client_id=49974&response_type=code&redirect_uri=http://alisaalena.ddns.net/strava/exchange_token/{VkId}&approval_prompt=force&scope=read,activity:read");
         }
         private static readonly HttpClient client = new HttpClient();
-        public async Task<JsonResult> exchange_token(string state, string code, string scope, string VkId)
+        public async Task<JsonResult> exchange_token(string state, string code, string scope, string Id)
         {
             ViewData.Model = $"state {state},  code {code},  scope {scope}";
             WebRequest request = WebRequest.Create("https://www.strava.com/oauth/token");
@@ -62,8 +63,8 @@ namespace MiniAppHakaton.Controllers
                 StravaModelToken ModelToken = JsonSerializer.Deserialize<StravaModelToken>(responseString);
                 ViewData.Model = ModelToken.access_token;
                 _modelToken = ModelToken;
-                //AplicatuinUser user = _userManager.Users.ToList().Find(user => user.VKId == vkId);
-                //user.
+                _context.Users.Add(new ApplicationUser() { VKId = Id, StravaAccessToken = _modelToken.access_token });
+                _context.SaveChanges();
                 return new JsonResult(ModelToken);
             }
             catch (Exception ex)
@@ -74,41 +75,45 @@ namespace MiniAppHakaton.Controllers
             return null;
         }
         private static StravaModelToken _modelToken;
-        public JsonResult GetLastTrack(int Vkid, string access_token)
+        public JsonResult GetLastTrack(string Vkid)
         {
-            try
+            ApplicationUser user = _context.Users.FirstOrDefault(i => i.VKId == Vkid);
+            if (user != null)
             {
-                WebRequest request = WebRequest.Create("https://www.strava.com/api/v3/athlete/activities?per_page=5");
-                request.Method = "Get";
-                request.Headers.Add("Authorization", "Bearer " + access_token);
-               
-                var response = request.GetResponse();
-                string responseFromServer;
-                using (Stream dataStream = response.GetResponseStream())
+                try
                 {
-                    // Open the stream using a StreamReader for easy access.
-                    StreamReader reader = new StreamReader(dataStream);
-                    // Read the content.
-                    responseFromServer = reader.ReadToEnd();
-                    // Display the content.
-                    
-                }
+                    WebRequest request = WebRequest.Create("https://www.strava.com/api/v3/athlete/activities?per_page=5");
+                    request.Method = "Get";
+                    request.Headers.Add("Authorization", "Bearer " + user.StravaAccessToken);
 
-                if (!responseFromServer.Contains("Authorization Error"))
+                    var response = request.GetResponse();
+                    string responseFromServer;
+                    using (Stream dataStream = response.GetResponseStream())
+                    {
+                        // Open the stream using a StreamReader for easy access.
+                        StreamReader reader = new StreamReader(dataStream);
+                        // Read the content.
+                        responseFromServer = reader.ReadToEnd();
+                        // Display the content.
+
+                    }
+
+                    if (!responseFromServer.Contains("Authorization Error"))
+                    {
+                        List<activities> activities = JsonSerializer.Deserialize<List<activities>>(responseFromServer);
+                        return new JsonResult(activities);
+                    }
+                    else
+                    {
+                        return new JsonResult("Проблемы с токеном");
+                    }
+
+
+                }
+                catch (Exception ex)
                 {
-                    List<activities> activities = JsonSerializer.Deserialize<List<activities>>(responseFromServer);
-                    return new JsonResult(activities);
+                    return new JsonResult(ex.Message);
                 }
-                else
-                {
-                    return new JsonResult("Проблемы с токеном");
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                return new JsonResult(ex.Message);
             }
             return null;
         }
