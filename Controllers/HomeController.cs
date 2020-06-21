@@ -8,6 +8,7 @@ using Microsoft.Extensions.Logging;
 using MiniAppHakaton.Data;
 using MiniAppHakaton.Models;
 
+
 namespace MiniAppHakaton.Controllers
 {
     
@@ -37,7 +38,7 @@ namespace MiniAppHakaton.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-        public async Task<JsonResult> GetStravaRezult(int idActivity)
+        public Task<JsonResult> GetStravaRezult(int idActivity)
         {
 
             return null;

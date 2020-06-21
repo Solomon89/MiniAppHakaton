@@ -15,6 +15,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using MiniAppHakaton.Data;
 using MiniAppHakaton.Models.Identity;
+using AspNetCore.OAuth.Provider.Strava;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace MiniAppHakaton
 {
