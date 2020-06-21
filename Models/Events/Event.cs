@@ -14,6 +14,8 @@ namespace MiniAppHakaton.Models.Events
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
         public double Reward { get; set; }
+
+        public string Icon { get; set; }
         public int? CreatedById { get; set; }
         public int? UpdatedById { get; set; }
 
