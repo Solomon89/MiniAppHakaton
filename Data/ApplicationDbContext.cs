@@ -24,8 +24,9 @@ namespace MiniAppHakaton.Data
         public DbSet<Building> Buildings { get; set; }
         public DbSet<Mob> Mobs { get; set; }
         public DbSet<Skill> Skills { get; set; }
-        
-        
+
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
         public DbSet<Models.Events.Event> Events { get; set; }
         public DbSet<Models.Events.EventBuildings> EventBuildings { get; set; }
         public DbSet<Models.Events.EventMobs> EventMobs { get; set; }
@@ -215,6 +216,8 @@ namespace MiniAppHakaton.Data
                  .HasColumnName("name")
                  .HasMaxLength(255);
 
+                entity.Property(e => e.Icon)
+                 .HasColumnName("icon");
 
                 entity.Property(e => e.Reward)
                  .HasColumnName("reward");
