@@ -41,6 +41,7 @@ namespace MiniAppHakaton.Controllers.REST
                             
                             select new
                             {
+                                id = Building.Id,
                                 user = (from UserBuilding in _context.UserBuildings
                                        join Users in _context.ApplicationUsers on UserBuilding.UserId equals Users.Id
                                         where UserBuilding.BuildingId == Building.Id
