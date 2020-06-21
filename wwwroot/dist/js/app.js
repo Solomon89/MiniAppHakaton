@@ -169,65 +169,82 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   created: function created() {
-    this.init();
+    var _this = this;
+
+    return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      return regeneratorRuntime.wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.t0 = console;
+              _context.next = 3;
+              return _this.init();
+
+            case 3:
+              _context.t1 = _context.sent;
+
+              _context.t0.log.call(_context.t0, _context.t1);
+
+            case 5:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }))();
   },
   methods: {
     init: function init() {
-      var _this = this;
+      var _this2 = this;
 
-      return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-        var temp, data;
-        return regeneratorRuntime.wrap(function _callee$(_context) {
+      return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2() {
+        var temp;
+        return regeneratorRuntime.wrap(function _callee2$(_context2) {
           while (1) {
-            switch (_context.prev = _context.next) {
+            switch (_context2.prev = _context2.next) {
               case 0:
-                _context.next = 2;
+                _context2.next = 2;
                 return _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_4___default.a.send('VKWebAppInit');
 
               case 2:
-                _context.next = 4;
+                _context2.next = 4;
                 return _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_4___default.a.send('VKWebAppGetUserInfo');
 
               case 4:
-                _this.currentUserInfo = _context.sent;
-                _context.next = 7;
+                _this2.currentUserInfo = _context2.sent;
+                _context2.next = 7;
                 return _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_4___default.a.send('VKWebAppGetUserInfo');
 
               case 7:
-                temp = _context.sent;
+                temp = _context2.sent;
 
                 if (!temp.hasOwnProperty('first_name')) {
-                  _this.has_errors = true;
+                  _this2.has_errors = true;
                 }
 
-                _this.currentUserInfo = temp;
-                _context.next = 12;
+                _this2.currentUserInfo = temp;
+                _context2.next = 12;
                 return _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_4___default.a.send('VKWebAppGetGeodata');
 
               case 12:
-                temp = _context.sent;
+                temp = _context2.sent;
 
                 if (temp.type === 'VKWebAppGeodataFailed') {
-                  _this.has_errors = true;
+                  _this2.has_errors = true;
                 }
 
-                _this.currentUserLocation = temp;
-                _context.next = 17;
-                return jquery__WEBPACK_IMPORTED_MODULE_8___default.a.ajax({
+                _this2.currentUserLocation = temp;
+                return _context2.abrupt("return", jquery__WEBPACK_IMPORTED_MODULE_8___default.a.ajax({
                   type: 'GET',
-                  url: "/Api/MapController/MapInit?vkId=".concat(_this.currentUserInfo.id, "&&lat=").concat(_this.currentUserLocation.lat, "&&lon=").concat(_this.currentUserLocation["long"])
-                });
+                  url: "/Api/MapController/MapInit?vkId=".concat(_this2.currentUserInfo.id, "&&lat=").concat(_this2.currentUserLocation.lat, "&&lon=").concat(_this2.currentUserLocation["long"])
+                }));
 
-              case 17:
-                data = _context.sent;
-                console.log(data);
-
-              case 19:
+              case 16:
               case "end":
-                return _context.stop();
+                return _context2.stop();
             }
           }
-        }, _callee);
+        }, _callee2);
       }))();
     }
   },

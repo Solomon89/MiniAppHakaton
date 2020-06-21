@@ -33,8 +33,9 @@
                 is_strava_auth: false
             }
         },
-        created() {
-            this.init()
+        async created() {
+
+            console.log(await this.init())
 
         },
         methods: {
@@ -52,11 +53,10 @@
                 }
                 this.currentUserLocation = temp
 
-                let data = await $.ajax({
+                return $.ajax({
                     type: 'GET',
                     url: `/Api/MapController/MapInit?vkId=${this.currentUserInfo.id}&&lat=${this.currentUserLocation.lat}&&lon=${this.currentUserLocation.long}`,
                 });
-                console.log(data)
             }
         },
         computed: {
