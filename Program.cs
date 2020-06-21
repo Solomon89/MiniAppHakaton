@@ -15,7 +15,6 @@ namespace MiniAppHakaton
     {
         public static async Task Main(string[] args)
         {
-            
             var host = CreateHostBuilder(args).Build();
 
             var serviceScope = host.Services.CreateScope();
