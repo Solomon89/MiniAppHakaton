@@ -81,6 +81,25 @@ namespace MiniAppHakaton.Controllers.REST
 
 
         [HttpGet]
+        [Route("ConquersBuilding")]
+        public IActionResult RandomResponse()
+        {
+            Random randomizer = new Random();
+            int a = randomizer.Next(0, 100);
+            if (a >= 50)
+            {
+                return Ok();
+            }
+            else if (a < 50)
+            {
+                return StatusCode(400);
+            }
+
+            return Ok();
+        }
+
+
+        [HttpGet]
         [Route("MapInit")]
         public IActionResult MapInit(string vkId, double lat, double lon)
         {
