@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace MiniAppHakaton.Models.Identity
 {
-    public class ApplicationUser : IdentityUser<int>
+    public class ApplicationUser 
     {
+        public int Id { get; set; }
         public int StravaId { get; set; }
         public long StravaExpires { get; set; }
         public string StravaAccessToken { get; set; }

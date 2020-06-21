@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 
 namespace MiniAppHakaton.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<ApplicationUser, IdentityRole<int>, int, IdentityUserClaim<int>, IdentityUserRole<int>, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>
+    public class ApplicationDbContext : IdentityDbContext<User, IdentityRole<int>, int, IdentityUserClaim<int>, IdentityUserRole<int>, IdentityUserLogin<int>, IdentityRoleClaim<int>, IdentityUserToken<int>>
     {
 
 
@@ -40,6 +40,10 @@ namespace MiniAppHakaton.Data
         public DbSet<Track> Tracks { get; set; }
         public DbSet<Point> Points { get; set; }
         public DbSet<TracksPoints> TracksPoints { get; set; }
+        
+        
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
+
 
 
         public DbSet<UserAchivment> UserAchivments { get; set; }
@@ -415,6 +419,42 @@ namespace MiniAppHakaton.Data
 
 
             /////// схема users
+            modelBuilder.Entity<Models.Identity.ApplicationUser>(entity =>
+            {
+                entity.ToTable("user", "users");
+
+
+                entity.Property(e => e.Id)
+                    .ValueGeneratedOnAdd()
+                    .HasColumnName("id");
+
+                entity.HasKey(e => e.Id).HasName("users_user_PK");
+
+                entity.Property(e => e.StravaId)
+                 .HasColumnName("strava_id"); 
+                
+                entity.Property(e => e.StravaExpires)
+                 .HasColumnName("strava_expires");   
+                
+                entity.Property(e => e.StravaExpires)
+                 .HasColumnName("strava_access_token");
+
+                entity.Property(e => e.StravaRefreshToken)
+                 .HasColumnName("strava_refresh_token");
+
+                entity.Property(e => e.Gold)
+                 .HasColumnName("gold");
+                
+                entity.Property(e => e.Color)
+                 .HasColumnName("color");   
+
+                entity.Property(e => e.VKId)
+                 .HasColumnName("vk_id")
+                 .HasMaxLength(255);
+            });
+
+
+
 
             modelBuilder.Entity<Models.Users.UserAchivment>(entity =>
             {
