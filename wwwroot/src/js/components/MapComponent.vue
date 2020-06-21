@@ -27,6 +27,7 @@
         },
         props: {
             location: Object,
+            vkId: Number,
         },
         methods: {
             drawPolygon(maps, coords, hintContent) {
@@ -56,9 +57,16 @@
                     iconImageOffset: [0, 0]
                 })
                 myPlacemark.events.add('click', (e) => {
-                    
-                    var coords = e.get('coords');
-                    alert(coords.join(', '));
+                    this.myMap.balloon.open(
+                        // Позиция балуна
+                        e.get("coords"), {
+                            // Свойства балуна:
+                            // контент балуна
+                            contentBody: `<div>Значение ${e.get("coords")}</div>`
+                        }
+                    )
+                    // var coords = e.get('coords');
+                    // alert(coords.join(', '));
                 });
                 this.myMap.geoObjects.add(myPlacemark);
             },
@@ -92,11 +100,11 @@
             }
         },
         async created() {
-            // let data = await $.ajax({
-            //     type: 'POST',
-            //     url: url,
-            //     data: data,
-            // });
+            let data = await $.ajax({
+                type: 'GET',
+                url: `/Api/MapController/MapInit?vkId=${this.vkId}&&lat=${this.location.lat}&&lon=${this.location.long}`,
+            });
+            console.log(data)
             ymaps.load('https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=f8732bc7-6ffa-445d-a447-abc4f837cdac').then((maps) => {
                 this.myMap = new maps.Map('map', {
                     // center: [this.location.lat, this.location.long],

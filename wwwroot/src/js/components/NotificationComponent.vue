@@ -9,8 +9,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <a :href="authUrl" class="btn btn-primary">Войти в STRAVA</a>
+                <div class="modal-body" v-html="body_text">
                 </div>
             </div>
         </div>
@@ -22,12 +21,10 @@
         name: "NotificationComponent",
         props: {
             title_text: String,
+            body_text: String,
             vkId: Number
         },
         computed: {
-            authUrl() {
-                return `Strava/AuthInStrava?VkId=${this.vkId}`
-            }
         }
     }
 </script>

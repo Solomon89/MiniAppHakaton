@@ -139,6 +139,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -206,6 +210,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }
       }, _callee);
     }))();
+  },
+  computed: {
+    authUrl: function authUrl() {
+      return "/Strava/AuthInStrava?VkId=".concat(this.currentUserInfo.id);
+    },
+    getATag: function getATag() {
+      return "<a href=\"".concat(this.authUrl, "\" class=\"btn btn-primary\">\u0412\u043E\u0439\u0442\u0438 \u0432 STRAVA</a>");
+    }
   }
 });
 
@@ -220,19 +232,22 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es_array_join__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.join */ "../../node_modules/core-js/modules/es.array.join.js");
-/* harmony import */ var core_js_modules_es_array_join__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_join__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string */ "../../node_modules/core-js/modules/es.object.to-string.js");
-/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.promise */ "../../node_modules/core-js/modules/es.promise.js");
-/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! regenerator-runtime/runtime */ "../../node_modules/regenerator-runtime/runtime.js");
-/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! jquery */ "../../node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var ymaps__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ymaps */ "../../node_modules/ymaps/dist/ymaps.esm.js");
-/* harmony import */ var _icons_circle_nike_round_icon_sports_icon_178227_png__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/icons/circle-nike-round-icon-sports-icon-178227.png */ "./icons/circle-nike-round-icon-sports-icon-178227.png");
-/* harmony import */ var _icons_fortress_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/icons/fortress.png */ "./icons/fortress.png");
+/* harmony import */ var core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.concat */ "../../node_modules/core-js/modules/es.array.concat.js");
+/* harmony import */ var core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.number.constructor */ "../../node_modules/core-js/modules/es.number.constructor.js");
+/* harmony import */ var core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.object.to-string */ "../../node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.promise */ "../../node_modules/core-js/modules/es.promise.js");
+/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! regenerator-runtime/runtime */ "../../node_modules/regenerator-runtime/runtime.js");
+/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! jquery */ "../../node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var ymaps__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ymaps */ "../../node_modules/ymaps/dist/ymaps.esm.js");
+/* harmony import */ var _icons_circle_nike_round_icon_sports_icon_178227_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/icons/circle-nike-round-icon-sports-icon-178227.png */ "./icons/circle-nike-round-icon-sports-icon-178227.png");
+/* harmony import */ var _icons_fortress_png__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/icons/fortress.png */ "./icons/fortress.png");
+
 
 
 
@@ -262,7 +277,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   props: {
-    location: Object
+    location: Object,
+    vkId: Number
   },
   methods: {
     drawPolygon: function drawPolygon(maps, coords, hintContent) {
@@ -278,6 +294,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.myMap.geoObjects.add(myPolygon);
     },
     drawImage: function drawImage(ymaps, icon, coords, hintContent, balloonContent) {
+      var _this = this;
+
       var myPlacemark = new ymaps.Placemark(coords, {
         hintContent: hintContent,
         balloonContent: balloonContent
@@ -289,8 +307,14 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         iconImageOffset: [0, 0]
       });
       myPlacemark.events.add('click', function (e) {
-        var coords = e.get('coords');
-        alert(coords.join(', '));
+        _this.myMap.balloon.open( // Позиция балуна
+        e.get("coords"), {
+          // Свойства балуна:
+          // контент балуна
+          contentBody: "<div>\u0417\u043D\u0430\u0447\u0435\u043D\u0438\u0435 ".concat(e.get("coords"), "</div>")
+        }); // var coords = e.get('coords');
+        // alert(coords.join(', '));
+
       });
       this.myMap.geoObjects.add(myPlacemark);
     },
@@ -318,20 +342,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
     return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+      var data;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              // let data = await $.ajax({
-              //     type: 'POST',
-              //     url: url,
-              //     data: data,
-              // });
-              ymaps__WEBPACK_IMPORTED_MODULE_5__["default"].load('https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=f8732bc7-6ffa-445d-a447-abc4f837cdac').then(function (maps) {
-                _this.myMap = new maps.Map('map', {
+              _context.next = 2;
+              return jquery__WEBPACK_IMPORTED_MODULE_5___default.a.ajax({
+                type: 'GET',
+                url: "/Api/MapController/MapInit?vkId=".concat(_this2.vkId, "&&lat=").concat(_this2.location.lat, "&&lon=").concat(_this2.location["long"])
+              });
+
+            case 2:
+              data = _context.sent;
+              console.log(data);
+              ymaps__WEBPACK_IMPORTED_MODULE_6__["default"].load('https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=f8732bc7-6ffa-445d-a447-abc4f837cdac').then(function (maps) {
+                _this2.myMap = new maps.Map('map', {
                   // center: [this.location.lat, this.location.long],
                   center: [55.73, 37.75],
                   zoom: 13,
@@ -339,25 +368,25 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   controls: []
                 });
 
-                _this.myMap.behaviors.disable('scrollZoom');
+                _this2.myMap.behaviors.disable('scrollZoom');
 
-                _this.myMap.behaviors.disable('multiTouch');
+                _this2.myMap.behaviors.disable('multiTouch');
 
-                _this.myMap.behaviors.disable('dblClickZoom');
+                _this2.myMap.behaviors.disable('dblClickZoom');
 
-                _this.drawPolygon(maps, [[55.75, 37.50], [55.80, 37.60], [55.75, 37.70], [55.70, 37.70], [55.70, 37.50]], 'Зона комфорта');
+                _this2.drawPolygon(maps, [[55.75, 37.50], [55.80, 37.60], [55.75, 37.70], [55.70, 37.70], [55.70, 37.50]], 'Зона комфорта');
 
-                _this.drawImage(maps, _icons_circle_nike_round_icon_sports_icon_178227_png__WEBPACK_IMPORTED_MODULE_6__["default"], [55.73, 37.75], 'Ивентовая башня', 'Захватите башню');
+                _this2.drawImage(maps, _icons_circle_nike_round_icon_sports_icon_178227_png__WEBPACK_IMPORTED_MODULE_7__["default"], [55.73, 37.75], 'Ивентовая башня', 'Захватите башню');
 
-                _this.drawImage(maps, _icons_fortress_png__WEBPACK_IMPORTED_MODULE_7__["default"], [55.79, 37.75], 'Башня', 'Захватите башню');
+                _this2.drawImage(maps, _icons_fortress_png__WEBPACK_IMPORTED_MODULE_8__["default"], [55.79, 37.75], 'Башня', 'Захватите башню');
 
-                _this.drawPolyLine(maps, [// Указываем координаты вершин.
+                _this2.drawPolyLine(maps, [// Указываем координаты вершин.
                 [55.80, 37.50], [55.80, 37.40], [55.70, 37.50], [55.70, 37.40]]);
               })["catch"](function (error) {
                 return console.log('Failed to load Yandex Maps', error);
               });
 
-            case 1:
+            case 5:
             case "end":
               return _context.stop();
           }
@@ -468,18 +497,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "NotificationComponent",
   props: {
     title_text: String,
+    body_text: String,
     vkId: Number
   },
-  computed: {
-    authUrl: function authUrl() {
-      return "Strava/AuthInStrava?VkId=".concat(this.vkId);
-    }
-  }
+  computed: {}
 });
 
 /***/ }),
@@ -5024,23 +5049,62 @@ module.exports = {
 
 /***/ }),
 
-/***/ "../../node_modules/core-js/internals/array-method-is-strict.js":
-/*!*****************************************************************************************************************!*\
-  !*** C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/core-js/internals/array-method-is-strict.js ***!
-  \*****************************************************************************************************************/
+/***/ "../../node_modules/core-js/internals/array-method-has-species-support.js":
+/*!***************************************************************************************************************************!*\
+  !*** C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/core-js/internals/array-method-has-species-support.js ***!
+  \***************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-"use strict";
-
 var fails = __webpack_require__(/*! ../internals/fails */ "../../node_modules/core-js/internals/fails.js");
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "../../node_modules/core-js/internals/well-known-symbol.js");
+var V8_VERSION = __webpack_require__(/*! ../internals/engine-v8-version */ "../../node_modules/core-js/internals/engine-v8-version.js");
 
-module.exports = function (METHOD_NAME, argument) {
-  var method = [][METHOD_NAME];
-  return !!method && fails(function () {
-    // eslint-disable-next-line no-useless-call,no-throw-literal
-    method.call(null, argument || function () { throw 1; }, 1);
+var SPECIES = wellKnownSymbol('species');
+
+module.exports = function (METHOD_NAME) {
+  // We can't use this feature detection in V8 since it causes
+  // deoptimization and serious performance degradation
+  // https://github.com/zloirock/core-js/issues/677
+  return V8_VERSION >= 51 || !fails(function () {
+    var array = [];
+    var constructor = array.constructor = {};
+    constructor[SPECIES] = function () {
+      return { foo: 1 };
+    };
+    return array[METHOD_NAME](Boolean).foo !== 1;
   });
+};
+
+
+/***/ }),
+
+/***/ "../../node_modules/core-js/internals/array-species-create.js":
+/*!***************************************************************************************************************!*\
+  !*** C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/core-js/internals/array-species-create.js ***!
+  \***************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var isObject = __webpack_require__(/*! ../internals/is-object */ "../../node_modules/core-js/internals/is-object.js");
+var isArray = __webpack_require__(/*! ../internals/is-array */ "../../node_modules/core-js/internals/is-array.js");
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "../../node_modules/core-js/internals/well-known-symbol.js");
+
+var SPECIES = wellKnownSymbol('species');
+
+// `ArraySpeciesCreate` abstract operation
+// https://tc39.github.io/ecma262/#sec-arrayspeciescreate
+module.exports = function (originalArray, length) {
+  var C;
+  if (isArray(originalArray)) {
+    C = originalArray.constructor;
+    // cross-realm fallback
+    if (typeof C == 'function' && (C === Array || isArray(C.prototype))) C = undefined;
+    else if (isObject(C)) {
+      C = C[SPECIES];
+      if (C === null) C = undefined;
+    }
+  } return new (C === undefined ? Array : C)(length === 0 ? 0 : length);
 };
 
 
@@ -5232,6 +5296,28 @@ module.exports = function (bitmap, value) {
     writable: !(bitmap & 4),
     value: value
   };
+};
+
+
+/***/ }),
+
+/***/ "../../node_modules/core-js/internals/create-property.js":
+/*!**********************************************************************************************************!*\
+  !*** C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/core-js/internals/create-property.js ***!
+  \**********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var toPrimitive = __webpack_require__(/*! ../internals/to-primitive */ "../../node_modules/core-js/internals/to-primitive.js");
+var definePropertyModule = __webpack_require__(/*! ../internals/object-define-property */ "../../node_modules/core-js/internals/object-define-property.js");
+var createPropertyDescriptor = __webpack_require__(/*! ../internals/create-property-descriptor */ "../../node_modules/core-js/internals/create-property-descriptor.js");
+
+module.exports = function (object, key, value) {
+  var propertyKey = toPrimitive(key);
+  if (propertyKey in object) definePropertyModule.f(object, propertyKey, createPropertyDescriptor(0, value));
+  else object[propertyKey] = value;
 };
 
 
@@ -5787,6 +5873,24 @@ var ArrayPrototype = Array.prototype;
 // check on default Array iterator
 module.exports = function (it) {
   return it !== undefined && (Iterators.Array === it || ArrayPrototype[ITERATOR] === it);
+};
+
+
+/***/ }),
+
+/***/ "../../node_modules/core-js/internals/is-array.js":
+/*!***************************************************************************************************!*\
+  !*** C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/core-js/internals/is-array.js ***!
+  \***************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var classof = __webpack_require__(/*! ../internals/classof-raw */ "../../node_modules/core-js/internals/classof-raw.js");
+
+// `IsArray` abstract operation
+// https://tc39.github.io/ecma262/#sec-isarray
+module.exports = Array.isArray || function isArray(arg) {
+  return classof(arg) == 'Array';
 };
 
 
@@ -6972,6 +7076,24 @@ module.exports = function (argument) {
 
 /***/ }),
 
+/***/ "../../node_modules/core-js/internals/to-object.js":
+/*!****************************************************************************************************!*\
+  !*** C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/core-js/internals/to-object.js ***!
+  \****************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+var requireObjectCoercible = __webpack_require__(/*! ../internals/require-object-coercible */ "../../node_modules/core-js/internals/require-object-coercible.js");
+
+// `ToObject` abstract operation
+// https://tc39.github.io/ecma262/#sec-toobject
+module.exports = function (argument) {
+  return Object(requireObjectCoercible(argument));
+};
+
+
+/***/ }),
+
 /***/ "../../node_modules/core-js/internals/to-primitive.js":
 /*!*******************************************************************************************************!*\
   !*** C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/core-js/internals/to-primitive.js ***!
@@ -7093,30 +7215,72 @@ module.exports = '\u0009\u000A\u000B\u000C\u000D\u0020\u00A0\u1680\u2000\u2001\u
 
 /***/ }),
 
-/***/ "../../node_modules/core-js/modules/es.array.join.js":
-/*!******************************************************************************************************!*\
-  !*** C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/core-js/modules/es.array.join.js ***!
-  \******************************************************************************************************/
+/***/ "../../node_modules/core-js/modules/es.array.concat.js":
+/*!********************************************************************************************************!*\
+  !*** C:/Users/NeTRuS/Desktop/hackathon/MiniAppHakaton/node_modules/core-js/modules/es.array.concat.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 var $ = __webpack_require__(/*! ../internals/export */ "../../node_modules/core-js/internals/export.js");
-var IndexedObject = __webpack_require__(/*! ../internals/indexed-object */ "../../node_modules/core-js/internals/indexed-object.js");
-var toIndexedObject = __webpack_require__(/*! ../internals/to-indexed-object */ "../../node_modules/core-js/internals/to-indexed-object.js");
-var arrayMethodIsStrict = __webpack_require__(/*! ../internals/array-method-is-strict */ "../../node_modules/core-js/internals/array-method-is-strict.js");
+var fails = __webpack_require__(/*! ../internals/fails */ "../../node_modules/core-js/internals/fails.js");
+var isArray = __webpack_require__(/*! ../internals/is-array */ "../../node_modules/core-js/internals/is-array.js");
+var isObject = __webpack_require__(/*! ../internals/is-object */ "../../node_modules/core-js/internals/is-object.js");
+var toObject = __webpack_require__(/*! ../internals/to-object */ "../../node_modules/core-js/internals/to-object.js");
+var toLength = __webpack_require__(/*! ../internals/to-length */ "../../node_modules/core-js/internals/to-length.js");
+var createProperty = __webpack_require__(/*! ../internals/create-property */ "../../node_modules/core-js/internals/create-property.js");
+var arraySpeciesCreate = __webpack_require__(/*! ../internals/array-species-create */ "../../node_modules/core-js/internals/array-species-create.js");
+var arrayMethodHasSpeciesSupport = __webpack_require__(/*! ../internals/array-method-has-species-support */ "../../node_modules/core-js/internals/array-method-has-species-support.js");
+var wellKnownSymbol = __webpack_require__(/*! ../internals/well-known-symbol */ "../../node_modules/core-js/internals/well-known-symbol.js");
+var V8_VERSION = __webpack_require__(/*! ../internals/engine-v8-version */ "../../node_modules/core-js/internals/engine-v8-version.js");
 
-var nativeJoin = [].join;
+var IS_CONCAT_SPREADABLE = wellKnownSymbol('isConcatSpreadable');
+var MAX_SAFE_INTEGER = 0x1FFFFFFFFFFFFF;
+var MAXIMUM_ALLOWED_INDEX_EXCEEDED = 'Maximum allowed index exceeded';
 
-var ES3_STRINGS = IndexedObject != Object;
-var STRICT_METHOD = arrayMethodIsStrict('join', ',');
+// We can't use this feature detection in V8 since it causes
+// deoptimization and serious performance degradation
+// https://github.com/zloirock/core-js/issues/679
+var IS_CONCAT_SPREADABLE_SUPPORT = V8_VERSION >= 51 || !fails(function () {
+  var array = [];
+  array[IS_CONCAT_SPREADABLE] = false;
+  return array.concat()[0] !== array;
+});
 
-// `Array.prototype.join` method
-// https://tc39.github.io/ecma262/#sec-array.prototype.join
-$({ target: 'Array', proto: true, forced: ES3_STRINGS || !STRICT_METHOD }, {
-  join: function join(separator) {
-    return nativeJoin.call(toIndexedObject(this), separator === undefined ? ',' : separator);
+var SPECIES_SUPPORT = arrayMethodHasSpeciesSupport('concat');
+
+var isConcatSpreadable = function (O) {
+  if (!isObject(O)) return false;
+  var spreadable = O[IS_CONCAT_SPREADABLE];
+  return spreadable !== undefined ? !!spreadable : isArray(O);
+};
+
+var FORCED = !IS_CONCAT_SPREADABLE_SUPPORT || !SPECIES_SUPPORT;
+
+// `Array.prototype.concat` method
+// https://tc39.github.io/ecma262/#sec-array.prototype.concat
+// with adding support of @@isConcatSpreadable and @@species
+$({ target: 'Array', proto: true, forced: FORCED }, {
+  concat: function concat(arg) { // eslint-disable-line no-unused-vars
+    var O = toObject(this);
+    var A = arraySpeciesCreate(O, 0);
+    var n = 0;
+    var i, k, length, len, E;
+    for (i = -1, length = arguments.length; i < length; i++) {
+      E = i === -1 ? O : arguments[i];
+      if (isConcatSpreadable(E)) {
+        len = toLength(E.length);
+        if (n + len > MAX_SAFE_INTEGER) throw TypeError(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
+        for (k = 0; k < len; k++, n++) if (k in E) createProperty(A, n, E[k]);
+      } else {
+        if (n >= MAX_SAFE_INTEGER) throw TypeError(MAXIMUM_ALLOWED_INDEX_EXCEEDED);
+        createProperty(A, n++, E);
+      }
+    }
+    A.length = n;
+    return A;
   }
 });
 
@@ -22428,12 +22592,18 @@ var render = function() {
             1
           ),
           _vm._v(" "),
-          _c("map-component", { attrs: { location: _vm.currentUserLocation } }),
+          _c("map-component", {
+            attrs: {
+              location: _vm.currentUserLocation,
+              "vk-id": _vm.currentUserInfo.id
+            }
+          }),
           _vm._v(" "),
           !_vm.is_strava_auth
             ? _c("notification-component", {
                 attrs: {
                   title_text: "Нужна авторизация",
+                  body_text: _vm.getATag,
                   "vk-id": _vm.currentUserInfo.id
                 },
                 on: {
@@ -22622,13 +22792,10 @@ var render = function() {
             )
           ]),
           _vm._v(" "),
-          _c("div", { staticClass: "modal-body" }, [
-            _c(
-              "a",
-              { staticClass: "btn btn-primary", attrs: { href: _vm.authUrl } },
-              [_vm._v("Войти в STRAVA")]
-            )
-          ])
+          _c("div", {
+            staticClass: "modal-body",
+            domProps: { innerHTML: _vm._s(_vm.body_text) }
+          })
         ])
       ]
     )

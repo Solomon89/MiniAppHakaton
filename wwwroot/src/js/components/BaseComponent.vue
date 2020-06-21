@@ -1,10 +1,14 @@
 ﻿<template>
     <div v-if="!has_errors" class="base">
         <div class="cover-wrapper">
-            <nav-bar-component :vk-id="currentUserInfo.id" :profile-name="currentUserInfo.hasOwnProperty('first_name')?currentUserInfo.first_name:''" :profile-photo-url="currentUserInfo.photo_100"></nav-bar-component>
+            <nav-bar-component :vk-id="currentUserInfo.id"
+                               :profile-name="currentUserInfo.hasOwnProperty('first_name')?currentUserInfo.first_name:''"
+                               :profile-photo-url="currentUserInfo.photo_100"></nav-bar-component>
+
         </div>
-        <map-component :location="currentUserLocation"></map-component>
-        <notification-component v-if="!is_strava_auth" title_text="Нужна авторизация" :vk-id="currentUserInfo.id" @closed="is_strava_auth=true"></notification-component>
+        <map-component :location="currentUserLocation" :vk-id="currentUserInfo.id"></map-component>
+        <notification-component v-if="!is_strava_auth" title_text="Нужна авторизация" :body_text="getATag"
+                                :vk-id="currentUserInfo.id" @closed="is_strava_auth=true"></notification-component>
     </div>
     <div v-else class="alert-danger">
         {{currentUserLocation.error_data.error_reason}}
@@ -25,7 +29,7 @@
                 currentUserInfo: {},
                 currentUserLocation: {},
                 has_errors: false,
-                is_strava_auth:false
+                is_strava_auth: false
             }
         },
         async created() {
@@ -43,6 +47,16 @@
             this.currentUserLocation = temp
 
         },
+        computed: {
+            authUrl() {
+                return `/Strava/AuthInStrava?VkId=${this.currentUserInfo.id}`
+            },
+            getATag() {
+                return `<a href="${this.authUrl}" class="btn btn-primary">Войти в STRAVA</a>`
+            }
+
+
+        }
     }
 </script>
 
