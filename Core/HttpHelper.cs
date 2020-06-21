@@ -31,7 +31,7 @@ namespace MiniAppHakaton.Core
                 requestLine += $"{item.Key}={item.Value}";
             }
             requestLine = requestLine.Substring(0, ((values.Count > 0) ? requestLine.Count() - 1 : requestLine.Count()));
-
+            
             return new HttpRequestMessage(HttpMethod.Get, requestLine);
         }
         public HttpRequestMessage SendPost<T>(string metod, T values)
@@ -50,6 +50,7 @@ namespace MiniAppHakaton.Core
         public async Task<HttpResponseMessage> SendHttpRequestMessageBody(HttpRequestMessage httpRequestMessage)
         {
             var client = _clientFactory.CreateClient();
+            
             client.DefaultRequestHeaders
               .Accept
               .Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -60,7 +61,7 @@ namespace MiniAppHakaton.Core
             HttpClientHandler handler = new HttpClientHandler();
             handler.CookieContainer = new CookieContainer();
             HttpClient client = new HttpClient(handler);
-
+            
             client.DefaultRequestHeaders
               .Accept
               .Add(new MediaTypeWithQualityHeaderValue("application/json"));
