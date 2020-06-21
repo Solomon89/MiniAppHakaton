@@ -36,7 +36,6 @@
         },
         async created() {
             this.npc_info = (await this.init())
-            console.log(this.npc_info)
         },
         methods: {
             async init() {

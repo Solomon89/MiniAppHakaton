@@ -20,16 +20,16 @@
                     '0000ff',
                     '000000'
                 ],
-                state: 1
+                maps: undefined
             }
         },
         props: {
             location: Object,
             vkId: Number,
-            npcInfo: Array
+            npcInfo: Object
         },
         methods: {
-            drawPolygon(maps, coords, hintContent) {
+            drawPolygon(maps, coords, color, hintContent) {
                 let myPolygon = new maps.Polygon([
                     coords
                 ], {
@@ -44,7 +44,7 @@
 
                 this.myMap.geoObjects.add(myPolygon);
             },
-            drawImage(ymaps, icon, coords, hintContent, color, id) {
+            drawImage(ymaps, icon, coords, hintContent, color, id, type) {
                 let myPlacemark = new ymaps.Placemark(coords, {
                     hintContent: hintContent,
                     // balloonContent: balloonContent
@@ -53,44 +53,56 @@
                     iconLayout: 'default#image',
                     iconImageHref: icon,
                     iconImageSize: [30, 30],
-                    iconImageOffset: [0, 0]
+                    iconImageOffset: [-15, -15]
                 })
                 myPlacemark.events.add('click', (e) => {
-                    console.log(id)
+                    console.log($(e.originalEvent.domEvent.originalEvent.target).find('button.taskSelectionConfirmation').attr('data-color'))
+
                     this.myMap.balloon.open(
                         // Позиция балуна
                         e.get("coords"), {
                             // Свойства балуна:
                             // контент балуна
-                            contentBody: `<div>Значение ${e.get("coords")}</div>`
+                            contentBody: `<div>Приступить к выполнению <br>этой задачи?</div><button data-color="${color}" data-event-id="${id}" data-event-type="${type}" class="taskSelectionConfirmation btn btn-info">Приступить</button>`
                         }
                     )
-                    // var coords = e.get('coords');
+                    $('.taskSelectionConfirmation').click(async (e) => {
+                        let target = $(e.target);
+                        let id = target.attr('data-event-id')
+                        let type = target.attr('data-event-type')
+                        let color = target.attr('data-color')
+                        let data = await $.ajax({
+                            type: 'GET',
+                            url: `/Api/MapController/MapInit?vkId=${this.currentUserInfo.id}&&lon=${this.currentUserLocation.long}`,
+                        });
+                        this.drawPolyLine(this.maps, data, color)
+                    })
+                    // let coords = e.get('coords');
                     // alert(coords.join(', '));
                 });
                 this.myMap.geoObjects.add(myPlacemark);
             },
-            drawPolyLine(ymaps, coords) {
+            drawPolyLine(ymaps, coords, color) {
                 let myPolyline = new ymaps.Polyline(coords, {}, {
-                    strokeColor: this.colors[Math.floor((Math.random() * this.colors.length))],
-                    strokeWidth: 4,
+                    strokeColor: color,
+                    strokeWidth: 3,
                     editorMaxPoints: 9999,
                 });
 
                 this.myMap.geoObjects.add(myPolyline);
 
             },
-            drawCircle(ymaps, coords, radius, hintContent, balloonContent) {
+            drawCircle(ymaps, coords, radius, color, hintContent, balloonContent) {
                 let myCircle = new ymaps.Circle([
                     coords,
-                    radius
+                    radius * 50
                 ], {
                     balloonContent: balloonContent,
                     hintContent: hintContent
                 }, {
                     draggable: false,
-                    fillColor: this.colors[Math.floor((Math.random() * this.colors.length))],
-                    strokeColor: this.colors[Math.floor((Math.random() * this.colors.length))],
+                    fillColor: color,
+                    strokeColor: color,
                     fillOpacity: 0.4,
                     strokeOpacity: 0.4,
                     strokeWidth: 2
@@ -102,24 +114,38 @@
         async created() {
 
             ymaps.load('https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=f8732bc7-6ffa-445d-a447-abc4f837cdac').then((maps) => {
+                this.maps = maps
                 this.myMap = new maps.Map('map', {
                     // center: [this.location.lat, this.location.long],
                     center: [55.73, 37.75],
                     zoom: 13,//13 ближе
                     controls: []
                 })
-                this.myMap.behaviors.disable('scrollZoom');
-                this.myMap.behaviors.disable('multiTouch');
-                this.myMap.behaviors.disable('dblClickZoom');
+                this.myMap.behaviors.disable('scrollZoom')
+                this.myMap.behaviors.disable('multiTouch')
+                this.myMap.behaviors.disable('dblClickZoom')
 
                 for (let elem of this.npcInfo.buildings) {
-                    this.drawImage(maps, '/icons/' + elem.icon, [elem.lat, elem.lon], elem.name, elem.user.color, elem.id)
+                    let color = '#808080'
+                    if ((elem.user !== undefined && elem.user !== null) && (elem.user.color !== undefined && elem.user.color !== null)) {
+                        color = elem.user.color
+                    }
+                    this.drawImage(maps, '/src/icons/' + elem.icon, [elem.lat, elem.lon], elem.name, color, elem.id)
+                    this.drawCircle(maps, [elem.lat, elem.lon], elem.radius, color)
                 }
                 for (let elem of this.npcInfo.mobs) {
-                    this.drawImage(maps, '/icons/' + elem.icon, [elem.lat, elem.lon], elem.name, elem.user.color, elem.id)
+                    let color = '#808080'
+                    if ((elem.user !== undefined && elem.user !== null) && (elem.user.color !== undefined && elem.user.color !== null)) {
+                        color = elem.user.color
+                    }
+                    this.drawImage(maps, '/src/icons/' + elem.icon, [elem.lat, elem.lon], elem.name, color, elem.id)
                 }
                 for (let elem of this.npcInfo.events) {
-                    this.drawImage(maps, '/icons/' + elem.icon, [elem.lat, elem.lon], elem.name, elem.user.color, elem.id)
+                    let color = '#808080'
+                    if ((elem.user !== undefined && elem.user !== null) && (elem.user.color !== undefined && elem.user.color !== null)) {
+                        color = elem.user.color
+                    }
+                    this.drawImage(maps, '/src/icons/' + elem.icon, [elem.lat, elem.lon], elem.name, color, elem.id)
                 }
                 // this.drawPolygon(maps, [
                 //     [55.75, 37.50],
