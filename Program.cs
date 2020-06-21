@@ -20,7 +20,7 @@ namespace MiniAppHakaton
             var serviceScope = host.Services.CreateScope();
             var services = serviceScope.ServiceProvider;
 
-
+            
             
 
             var bootstrap = services.GetRequiredService<Bootstrap.Bootstrap>();

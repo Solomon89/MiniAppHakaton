@@ -30,10 +30,64 @@ namespace MiniAppHakaton.Controllers.REST
         }
 
         [HttpGet]
+        [Route("Test")]
+
+        public IActionResult Test()
+        {
+            var xmlHelper = new Helpers.StravaTrackDeserializeHelper();
+            var points = xmlHelper.XMLToListOfPoints("C:\\123.gpx");
+            var track = new Models.Geomethry.Track();
+            track.TracksPoints = new List<Models.Geomethry.TracksPoints>();
+            _context.Tracks.Add(track);
+            _context.SaveChanges();
+            foreach (var p in points)
+            {
+                _context.Points.Add(p);
+                _context.SaveChanges();
+                _context.TracksPoints.Add(new TracksPoints { PointId = p.Id, TrackId = track.Id });
+                _context.SaveChanges();
+            }
+            return Ok();
+
+        } 
+
+
+        [HttpGet]
+        [Route("EventQuest")]
+        public IActionResult Quest(int eventId, string type)
+        {
+            var quest = from Event in _context.Events
+                        join Quest in _context.Quests on Event.Id equals Quest.EventId
+                        join Track in _context.Tracks on Quest.TrackId equals Track.Id
+                        where Event.Id == eventId
+                        select new
+                        {
+                            id = Track.Id,
+                            dist = Track.Distance,
+                            time = Track.Time,
+                            average_speed = Track.Time,
+                            Points = (from TracPoints in _context.TracksPoints
+                                      join Points in _context.Points on TracPoints.PointId equals Points.Id
+                                      where TracPoints.TrackId == Track.Id
+                                      select new
+                                      {
+                                          id = Points.Id,
+                                          lat = Points.Lat,
+                                          lon = Points.Lon
+                                      }).ToList()
+                        };
+            return Ok(quest);
+        }
+
+
+        [HttpGet]
         [Route("MapInit")]
         public IActionResult MapInit(string vkId, double lat, double lon)
         {
             //var buildings = _context.Buildings.Include(i => i.BuildingPoints).Include(j => j.UserBuildings);
+
+
+
 
             var buildings = (from Building in _context.Buildings
                              join BuldingPoints in _context.BuildingPoints on Building.Id equals BuldingPoints.BuildingId
