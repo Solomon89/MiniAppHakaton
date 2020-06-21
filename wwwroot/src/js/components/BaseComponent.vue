@@ -6,7 +6,7 @@
                                :profile-photo-url="currentUserInfo.photo_100"></nav-bar-component>
 
         </div>
-        <map-component :location="currentUserLocation" :vk-id="currentUserInfo.id"></map-component>
+        <map-component :npc-info="npc_info" :location="currentUserLocation" :vk-id="currentUserInfo.id"></map-component>
         <notification-component v-if="!is_strava_auth" title_text="Нужна авторизация" :body_text="getATag"
                                 :vk-id="currentUserInfo.id" @closed="is_strava_auth=true"></notification-component>
     </div>
@@ -29,14 +29,14 @@
             return {
                 currentUserInfo: {},
                 currentUserLocation: {},
+                npc_info: undefined,
                 has_errors: false,
                 is_strava_auth: false
             }
         },
         async created() {
-
-            console.log(await this.init())
-
+            this.npc_info = (await this.init())
+            console.log(this.npc_info)
         },
         methods: {
             async init() {

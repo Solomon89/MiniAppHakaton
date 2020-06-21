@@ -28,6 +28,7 @@
         props: {
             location: Object,
             vkId: Number,
+            npcInfo: Array
         },
         methods: {
             drawPolygon(maps, coords, hintContent) {
@@ -45,10 +46,10 @@
 
                 this.myMap.geoObjects.add(myPolygon);
             },
-            drawImage(ymaps, icon, coords, hintContent, balloonContent) {
+            drawImage(ymaps, icon, coords, hintContent, color, id) {
                 let myPlacemark = new ymaps.Placemark(coords, {
                     hintContent: hintContent,
-                    balloonContent: balloonContent
+                    // balloonContent: balloonContent
                 }, {
                     hasBalloon: false,
                     iconLayout: 'default#image',
@@ -57,6 +58,7 @@
                     iconImageOffset: [0, 0]
                 })
                 myPlacemark.events.add('click', (e) => {
+                    console.log(id)
                     this.myMap.balloon.open(
                         // Позиция балуна
                         e.get("coords"), {
@@ -100,7 +102,7 @@
             }
         },
         async created() {
-       
+
             ymaps.load('https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=f8732bc7-6ffa-445d-a447-abc4f837cdac').then((maps) => {
                 this.myMap = new maps.Map('map', {
                     // center: [this.location.lat, this.location.long],
@@ -111,23 +113,27 @@
                 this.myMap.behaviors.disable('scrollZoom');
                 this.myMap.behaviors.disable('multiTouch');
                 this.myMap.behaviors.disable('dblClickZoom');
-                this.drawPolygon(maps, [
-                    [55.75, 37.50],
-                    [55.80, 37.60],
-                    [55.75, 37.70],
-                    [55.70, 37.70],
-                    [55.70, 37.50],
 
-                ], 'Зона комфорта')
-                this.drawImage(maps, nikeIcon, [55.73, 37.75], 'Ивентовая башня', 'Захватите башню')
-                this.drawImage(maps, fortressIcon, [55.79, 37.75], 'Башня', 'Захватите башню')
-                this.drawPolyLine(maps, [
-                    // Указываем координаты вершин.
-                    [55.80, 37.50],
-                    [55.80, 37.40],
-                    [55.70, 37.50],
-                    [55.70, 37.40]
-                ])
+                for (let elem of this.npcInfo) {
+                    this.drawImage(maps, '/icons/' + nikeIcon, [elem.lat, elem.lon], elem.name, elem.user.color, elem.id)
+                }
+                // this.drawPolygon(maps, [
+                //     [55.75, 37.50],
+                //     [55.80, 37.60],
+                //     [55.75, 37.70],
+                //     [55.70, 37.70],
+                //     [55.70, 37.50],
+                //
+                // ], 'Зона комфорта')
+                // this.drawImage(maps, nikeIcon, [55.73, 37.75], 'Ивентовая башня', 'Захватите башню')
+                // this.drawImage(maps, fortressIcon, [55.79, 37.75], 'Башня', 'Захватите башню')
+                // this.drawPolyLine(maps, [
+                //     // Указываем координаты вершин.
+                //     [55.80, 37.50],
+                //     [55.80, 37.40],
+                //     [55.70, 37.50],
+                //     [55.70, 37.40]
+                // ])
             })
                 .catch(error => console.log('Failed to load Yandex Maps', error));
         }
