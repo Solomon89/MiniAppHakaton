@@ -74,7 +74,7 @@ namespace MiniAppHakaton.Controllers
             return null;
         }
         private static StravaModelToken _modelToken;
-        public async Task<JsonResult> GetLastTrack(int Vkid, string access_token)
+        public JsonResult GetLastTrack(int Vkid, string access_token)
         {
             try
             {
