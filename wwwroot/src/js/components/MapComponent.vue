@@ -56,7 +56,6 @@
                     iconImageOffset: [-15, -15]
                 })
                 myPlacemark.events.add('click', (e) => {
-                    console.log($(e.originalEvent.domEvent.originalEvent.target).find('button.taskSelectionConfirmation').attr('data-color'))
 
                     this.myMap.balloon.open(
                         // Позиция балуна
@@ -73,7 +72,7 @@
                         let color = target.attr('data-color')
                         let data = await $.ajax({
                             type: 'GET',
-                            url: `/Api/MapController/MapInit?vkId=${this.currentUserInfo.id}&&lon=${this.currentUserLocation.long}`,
+                            url: `/Api/MapController/EventQuest?eventId=${id}&&type=${type}`,
                         });
                         this.drawPolyLine(this.maps, data, color)
                     })
