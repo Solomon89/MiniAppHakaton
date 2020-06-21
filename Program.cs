@@ -20,8 +20,14 @@ namespace MiniAppHakaton
             var serviceScope = host.Services.CreateScope();
             var services = serviceScope.ServiceProvider;
 
+
+            
+
             var bootstrap = services.GetRequiredService<Bootstrap.Bootstrap>();
             await bootstrap.Run();
+
+            var init = services.GetRequiredService<Init.DbInitializer>();
+            init.Run();
 
             await host.RunAsync();
 
