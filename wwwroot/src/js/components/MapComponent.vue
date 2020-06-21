@@ -7,8 +7,6 @@
 <script>
     import $ from "jquery";
     import ymaps from 'ymaps';
-    import nikeIcon from '@/icons/circle-nike-round-icon-sports-icon-178227.png'
-    import fortressIcon from '@/icons/fortress.png'
 
     export default {
         name: "MapComponent",
@@ -114,8 +112,14 @@
                 this.myMap.behaviors.disable('multiTouch');
                 this.myMap.behaviors.disable('dblClickZoom');
 
-                for (let elem of this.npcInfo) {
-                    this.drawImage(maps, '/icons/' + nikeIcon, [elem.lat, elem.lon], elem.name, elem.user.color, elem.id)
+                for (let elem of this.npcInfo.buildings) {
+                    this.drawImage(maps, '/icons/' + elem.icon, [elem.lat, elem.lon], elem.name, elem.user.color, elem.id)
+                }
+                for (let elem of this.npcInfo.mobs) {
+                    this.drawImage(maps, '/icons/' + elem.icon, [elem.lat, elem.lon], elem.name, elem.user.color, elem.id)
+                }
+                for (let elem of this.npcInfo.events) {
+                    this.drawImage(maps, '/icons/' + elem.icon, [elem.lat, elem.lon], elem.name, elem.user.color, elem.id)
                 }
                 // this.drawPolygon(maps, [
                 //     [55.75, 37.50],

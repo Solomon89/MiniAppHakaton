@@ -303,8 +303,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! jquery */ "../../node_modules/jquery/dist/jquery.js");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_16___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_16__);
 /* harmony import */ var ymaps__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ymaps */ "../../node_modules/ymaps/dist/ymaps.esm.js");
-/* harmony import */ var _icons_circle_nike_round_icon_sports_icon_178227_png__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @/icons/circle-nike-round-icon-sports-icon-178227.png */ "./icons/circle-nike-round-icon-sports-icon-178227.png");
-/* harmony import */ var _icons_fortress_png__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @/icons/fortress.png */ "./icons/fortress.png");
 
 
 
@@ -338,8 +336,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-
-
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -442,14 +438,44 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this2.myMap.behaviors.disable('dblClickZoom');
 
-                var _iterator = _createForOfIteratorHelper(_this2.npcInfo),
+                var _iterator = _createForOfIteratorHelper(_this2.npcInfo.buildings),
                     _step;
 
                 try {
                   for (_iterator.s(); !(_step = _iterator.n()).done;) {
                     var elem = _step.value;
 
-                    _this2.drawImage(maps, '/icons/' + _icons_circle_nike_round_icon_sports_icon_178227_png__WEBPACK_IMPORTED_MODULE_18__["default"], [elem.lat, elem.lon], elem.name, elem.user.color, elem.id);
+                    _this2.drawImage(maps, '/icons/' + elem.icon, [elem.lat, elem.lon], elem.name, elem.user.color, elem.id);
+                  }
+                } catch (err) {
+                  _iterator.e(err);
+                } finally {
+                  _iterator.f();
+                }
+
+                var _iterator2 = _createForOfIteratorHelper(_this2.npcInfo.mobs),
+                    _step2;
+
+                try {
+                  for (_iterator2.s(); !(_step2 = _iterator2.n()).done;) {
+                    var _elem = _step2.value;
+
+                    _this2.drawImage(maps, '/icons/' + _elem.icon, [_elem.lat, _elem.lon], _elem.name, _elem.user.color, _elem.id);
+                  }
+                } catch (err) {
+                  _iterator2.e(err);
+                } finally {
+                  _iterator2.f();
+                }
+
+                var _iterator3 = _createForOfIteratorHelper(_this2.npcInfo.events),
+                    _step3;
+
+                try {
+                  for (_iterator3.s(); !(_step3 = _iterator3.n()).done;) {
+                    var _elem2 = _step3.value;
+
+                    _this2.drawImage(maps, '/icons/' + _elem2.icon, [_elem2.lat, _elem2.lon], _elem2.name, _elem2.user.color, _elem2.id);
                   } // this.drawPolygon(maps, [
                   //     [55.75, 37.50],
                   //     [55.80, 37.60],
@@ -469,9 +495,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   // ])
 
                 } catch (err) {
-                  _iterator.e(err);
+                  _iterator3.e(err);
                 } finally {
-                  _iterator.f();
+                  _iterator3.f();
                 }
               })["catch"](function (error) {
                 return console.log('Failed to load Yandex Maps', error);
@@ -36439,32 +36465,6 @@ var ymaps$1 = {
 
 /* harmony default export */ __webpack_exports__["default"] = (ymaps$1);
 
-
-/***/ }),
-
-/***/ "./icons/circle-nike-round-icon-sports-icon-178227.png":
-/*!*************************************************************!*\
-  !*** ./icons/circle-nike-round-icon-sports-icon-178227.png ***!
-  \*************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "../dist/static/circle-nike-round-icon-sports-icon-178227.png");
-
-/***/ }),
-
-/***/ "./icons/fortress.png":
-/*!****************************!*\
-  !*** ./icons/fortress.png ***!
-  \****************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = (__webpack_require__.p + "../dist/static/fortress.png");
 
 /***/ }),
 
