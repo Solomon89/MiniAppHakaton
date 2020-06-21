@@ -65,21 +65,41 @@ namespace MiniAppHakaton.Controllers.REST
             //           };
             //// mobs.ToList();
 
-            // var events = from Events in _context.Events
-            //              join EventPoints in _context.EventPoints on Events.Id equals EventPoints.EventId
-            //              join Points in _context.Points on EventPoints.PontId equals Points.Id
-            //              select new
-            //              {
-            //                  Lat = Points.Lat,
-            //                  Lon = Points.Lon,
-            //                  Name = Events.Name                             
-            //              };
-            //events.ToList();
+            var events = (from Event in _context.Events
+                             join EventPoints in _context.EventPoints on Event.Id equals EventPoints.EventId
+                             join Points in _context.Points on EventPoints.PontId equals Points.Id
+                             select new
+                             {
+                                 id = Event.Id,
+
+
+                                 eventId = (from EventBuildings in _context.EventBuildings
+                                            join Events in _context.Events on EventBuildings.EventId equals Events.Id
+                                            where EventBuildings.BuildingId == Event.Id
+                                            select
+                                                 Events.Id
+                                            ).FirstOrDefault(),
+
+                                 user = (from UserBuilding in _context.UserBuildings
+                                         join Users in _context.ApplicationUsers on UserBuilding.UserId equals Users.Id
+                                         where UserBuilding.BuildingId == Event.Id
+                                         select new
+                                         {
+                                             color = Users.Color
+                                         }).FirstOrDefault(),
+                                 Reward = Event.Reward,
+                                 Lat = Points.Lat,
+                                 Lon = Points.Lon,
+                                 Name = Event.Name,
+                                 Icon = Event.Icon,
+                                 type = "event"
+                             }).ToList();
+
             return Ok(new { buildings = buildings });
         }
 
         [HttpGet]
-        [Route ("Quest")]
+        [Route ("EventQuest")]
         public IActionResult Quest(int eventId)
         {
             var taskTrack = from Event in _context.Events 
