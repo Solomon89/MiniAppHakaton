@@ -48,6 +48,7 @@ namespace MiniAppHakaton.Controllers.REST
                                        {
                                            color = Users.Color
                                        }).FirstOrDefault(),
+                                Radius = Building.InfluenceRadius,
                                 Lat = Points.Lat,
                                 Lon = Points.Lon,
                                 Name = Building.Name,
