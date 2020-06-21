@@ -66,13 +66,16 @@ namespace MiniAppHakaton.Init
             if (_context.BuildingPoints.ToList().Count == 0)
             {
                 _context.BuildingPoints.Add(
-                   new Models.Geomethry.BuildingPoints { PointId = 23, BuildingId = 31 }
+                   new Models.Geomethry.BuildingPoints { PointId = 21, BuildingId = 31 }
+                   ); 
+                _context.BuildingPoints.Add(
+                   new Models.Geomethry.BuildingPoints { PointId = 22, BuildingId = 32 }
                    );
             }
             if (_context.EventPoints.ToList().Count == 0)
             {
                 _context.EventPoints.Add(
-                   new Models.Events.EventPoints { EventId = 13, PontId = 24 }
+                   new Models.Events.EventPoints { EventId = 13, PontId = 23 }
                );
             }
             if (_context.MobPoints.ToList().Count == 0)

@@ -20,37 +20,39 @@ namespace MiniAppHakaton.Controllers.REST
 
     [Route("Api/MapController")]
     [ApiController]
-    [ApiExplorerSettings(IgnoreApi = true)]
     public class MapController : ControllerBase
     {
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<ApplicationUser> _userManager;
 
-        public MapController(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public MapController(ApplicationDbContext context)
         {
             _context = context;
-            _userManager = userManager;
         }
 
         [HttpGet]
         [Route("MapInit")]
         public IActionResult MapInit(string vkId, double lat, double lon)
         {
-            var currentUser = _userManager.Users.ToList().Find(user => user.VKId == vkId);
-
             //var buildings = _context.Buildings.Include(i => i.BuildingPoints).Include(j => j.UserBuildings);
 
-            var buildings = from Building in _context.Buildings
+            var buildings = (from Building in _context.Buildings
                             join BuldingPoints in _context.BuildingPoints on Building.Id equals BuldingPoints.BuildingId
                             join Points in _context.Points on BuldingPoints.PointId equals Points.Id
-                            join UserBuilding in _context.UserBuildings on Building.Id equals UserBuilding.BuildingId
+                            
                             select new
                             {
+                                user = (from UserBuilding in _context.UserBuildings
+                                       join Users in _context.ApplicationUsers on UserBuilding.UserId equals Users.Id
+                                        where UserBuilding.BuildingId == Building.Id
+                                       select new
+                                       {
+                                           color = Users.Color
+                                       }).FirstOrDefault(),
                                 Lat = Points.Lat,
                                 Lon = Points.Lon,
                                 Name = Building.Name,
                                 Icon = Building.Icon
-                            };
+                            }).ToList();
             //buildings.ToArray();
 
             //var mobs = from Mob in _context.Mobs
@@ -75,7 +77,7 @@ namespace MiniAppHakaton.Controllers.REST
             //                  Name = Events.Name                             
             //              };
             //events.ToList();
-            return Ok(new { buildings = buildings });
+            return Ok(buildings);
         }
     }
 }
