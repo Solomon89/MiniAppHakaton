@@ -36,25 +36,81 @@ namespace MiniAppHakaton.Controllers.REST
             //var buildings = _context.Buildings.Include(i => i.BuildingPoints).Include(j => j.UserBuildings);
 
             var buildings = (from Building in _context.Buildings
-                            join BuldingPoints in _context.BuildingPoints on Building.Id equals BuldingPoints.BuildingId
-                            join Points in _context.Points on BuldingPoints.PointId equals Points.Id
-                            
-                            select new
-                            {
-                                id = Building.Id,
-                                user = (from UserBuilding in _context.UserBuildings
-                                       join Users in _context.ApplicationUsers on UserBuilding.UserId equals Users.Id
-                                        where UserBuilding.BuildingId == Building.Id
-                                       select new
-                                       {
-                                           color = Users.Color
-                                       }).FirstOrDefault(),
-                                Radius = Building.InfluenceRadius,
-                                Lat = Points.Lat,
-                                Lon = Points.Lon,
-                                Name = Building.Name,
-                                Icon = Building.Icon
-                            }).ToList();
+                             join BuldingPoints in _context.BuildingPoints on Building.Id equals BuldingPoints.BuildingId
+                             join Points in _context.Points on BuldingPoints.PointId equals Points.Id
+                             select new
+                             {
+                                 id = Building.Id,
+
+
+                                 eventId = (from EventBuildings in _context.EventBuildings
+                                            join Events in _context.Events on EventBuildings.EventId equals Events.Id
+                                            where EventBuildings.BuildingId == Building.Id
+                                            select
+                                                 Events.Id
+                                            ).FirstOrDefault(),
+
+                                 user = (from UserBuilding in _context.UserBuildings
+                                         join Users in _context.ApplicationUsers on UserBuilding.UserId equals Users.Id
+                                         where UserBuilding.BuildingId == Building.Id
+                                         select new
+                                         {
+                                             color = Users.Color
+                                         }).FirstOrDefault(),
+                                 radius = Building.InfluenceRadius,
+                                 lat = Points.Lat,
+                                 lon = Points.Lon,
+                                 name = Building.Name,
+                                 icon = Building.Icon,
+                                 type = "building"
+                             }).ToList();
+
+
+
+            var mobs = (from Mobs in _context.Mobs
+                        join MobPoints in _context.MobPoints on Mobs.Id equals MobPoints.MobId
+                        join Points in _context.Points on MobPoints.PointId equals Points.Id
+                        select new
+                        {
+                            id = Mobs.Id,
+                            eventId = (from EventMobs in _context.EventMobs
+                                       join Events in _context.Events on EventMobs.EventId equals Events.Id
+                                       where EventMobs.MobId == Mobs.Id
+                                       select
+                                            Events.Id
+                                            ).FirstOrDefault(),
+                            lat = Points.Lat,
+                            lon = Points.Lon,
+                            name = Mobs.Name,
+                            icon = Mobs.Icon,
+                            reward = Mobs.Reward,
+                            type = "mob"
+                        }).ToList();
+
+
+
+            var events = (from Event in _context.Events
+                          join EventPoints in _context.EventPoints on Event.Id equals EventPoints.EventId
+                          join Points in _context.Points on EventPoints.PontId equals Points.Id
+                          select new
+                          {
+                              id = Event.Id,
+
+
+                              eventId = (from EventBuildings in _context.EventBuildings
+                                         join Events in _context.Events on EventBuildings.EventId equals Events.Id
+                                         where EventBuildings.BuildingId == Event.Id
+                                         select
+                                              Events.Id
+                                         ).FirstOrDefault(),
+
+                              reward = Event.Reward,
+                              lat = Points.Lat,
+                              lon = Points.Lon,
+                              name = Event.Name,
+                              icon = Event.Icon,
+                              type = "event"
+                          }).ToList();
             //buildings.ToArray();
 
             //var mobs = from Mob in _context.Mobs
@@ -79,7 +135,31 @@ namespace MiniAppHakaton.Controllers.REST
             //                  Name = Events.Name                             
             //              };
             //events.ToList();
-            return Ok(buildings);
+            /*var building = from Buildings in _context.Buildings
+                           join EventBuildings in _context.EventBuildings on Buildings.Id equals EventBuildings.BuildingId
+                           join Event in _context.Events on EventBuildings.EventId equals Event.Id
+                           join Quest in _context.Quests on Event.Id equals Quest.EventId
+                           join Track in _context.Tracks on Quest.TrackId equals Track.Id
+                           where Buildings.Id == 123
+                           select new
+                           {
+                               id = Track.Id,
+                               dist = Track.Distance,
+                               time = Track.Time,
+                               average_speed = Track.Time,
+                               Points = (from TracPoints in _context.TracksPoints
+                                         join Points in _context.Points on TracPoints.PointId equals Points.Id
+                                         where TracPoints.TrackId == Track.Id
+                                         select new
+                                         {
+                                             id = Points.Id,
+                                             lat = Points.Lat,
+                                             lon = Points.Lon
+                                         }).ToList()
+                           };
+*/
+
+            return Ok(new { buildings, mobs, events });
         }
     }
 }
