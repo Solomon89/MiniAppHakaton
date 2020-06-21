@@ -20,6 +20,7 @@
     import MapComponent from "@/js/components/MapComponent";
     import NavBarComponent from "@/js/components/NavBarComponent";
     import NotificationComponent from "@/js/components/NotificationComponent";
+    import $ from "jquery";
 
     export default {
         name: "BaseComponent",
@@ -32,20 +33,31 @@
                 is_strava_auth: false
             }
         },
-        async created() {
-            await bridge.send('VKWebAppInit');
-            this.currentUserInfo = await bridge.send('VKWebAppGetUserInfo')
-            let temp = await bridge.send('VKWebAppGetUserInfo')
-            if (!temp.hasOwnProperty('first_name')) {
-                this.has_errors = true
-            }
-            this.currentUserInfo = temp
-            temp = await bridge.send('VKWebAppGetGeodata')
-            if (temp.type === 'VKWebAppGeodataFailed') {
-                this.has_errors = true
-            }
-            this.currentUserLocation = temp
+        created() {
+            this.init()
 
+        },
+        methods: {
+            async init() {
+                await bridge.send('VKWebAppInit');
+                this.currentUserInfo = await bridge.send('VKWebAppGetUserInfo')
+                let temp = await bridge.send('VKWebAppGetUserInfo')
+                if (!temp.hasOwnProperty('first_name')) {
+                    this.has_errors = true
+                }
+                this.currentUserInfo = temp
+                temp = await bridge.send('VKWebAppGetGeodata')
+                if (temp.type === 'VKWebAppGeodataFailed') {
+                    this.has_errors = true
+                }
+                this.currentUserLocation = temp
+
+                let data = await $.ajax({
+                    type: 'GET',
+                    url: `/Api/MapController/MapInit?vkId=${this.currentUserInfo.id}&&lat=${this.currentUserLocation.lat}&&lon=${this.currentUserLocation.long}`,
+                });
+                console.log(data)
+            }
         },
         computed: {
             authUrl() {

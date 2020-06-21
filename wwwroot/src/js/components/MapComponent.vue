@@ -100,11 +100,7 @@
             }
         },
         async created() {
-            let data = await $.ajax({
-                type: 'GET',
-                url: `/Api/MapController/MapInit?vkId=${this.vkId}&&lat=${this.location.lat}&&lon=${this.location.long}`,
-            });
-            console.log(data)
+       
             ymaps.load('https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=f8732bc7-6ffa-445d-a447-abc4f837cdac').then((maps) => {
                 this.myMap = new maps.Map('map', {
                     // center: [this.location.lat, this.location.long],

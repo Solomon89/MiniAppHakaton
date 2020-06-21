@@ -183,7 +183,6 @@
     .nav {
         background: $nav-background;
         color: white;
-        cursor: pointer;
         display: flex;
         flex-direction: column;
         font-size: 2rem;
@@ -205,6 +204,10 @@
             list-style: none;
             margin: 0 0 auto;
             padding: 0;
+
+            li, a {
+                cursor: pointer;
+            }
         }
     }
 

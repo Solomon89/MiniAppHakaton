@@ -12703,7 +12703,6 @@ a[data-v-72ee52bc]:hover {
 .nav[data-v-72ee52bc] {
   background: #302B4E;
   color: white;
-  cursor: pointer;
   display: -webkit-box;
   display: -webkit-flex;
   display: -moz-box;
@@ -12736,6 +12735,9 @@ a[data-v-72ee52bc]:hover {
   list-style: none;
   margin: 0 0 auto;
   padding: 0;
+}
+.nav ul li[data-v-72ee52bc], .nav ul a[data-v-72ee52bc] {
+  cursor: pointer;
 }
 @media all and (max-width: 600px) {
 .nav[data-v-72ee52bc] {

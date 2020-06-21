@@ -107,17 +107,22 @@
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.object.to-string */ "../../node_modules/core-js/modules/es.object.to-string.js");
-/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.promise */ "../../node_modules/core-js/modules/es.promise.js");
-/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! regenerator-runtime/runtime */ "../../node_modules/regenerator-runtime/runtime.js");
-/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @vkontakte/vk-bridge */ "../../node_modules/@vkontakte/vk-bridge/dist/index.umd.js");
-/* harmony import */ var _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var _js_components_MapComponent__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @/js/components/MapComponent */ "./js/components/MapComponent.vue");
-/* harmony import */ var _js_components_NavBarComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/js/components/NavBarComponent */ "./js/components/NavBarComponent.vue");
-/* harmony import */ var _js_components_NotificationComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/js/components/NotificationComponent */ "./js/components/NotificationComponent.vue");
+/* harmony import */ var core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.concat */ "../../node_modules/core-js/modules/es.array.concat.js");
+/* harmony import */ var core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string */ "../../node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.promise */ "../../node_modules/core-js/modules/es.promise.js");
+/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! regenerator-runtime/runtime */ "../../node_modules/regenerator-runtime/runtime.js");
+/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @vkontakte/vk-bridge */ "../../node_modules/@vkontakte/vk-bridge/dist/index.umd.js");
+/* harmony import */ var _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _js_components_MapComponent__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @/js/components/MapComponent */ "./js/components/MapComponent.vue");
+/* harmony import */ var _js_components_NavBarComponent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/js/components/NavBarComponent */ "./js/components/NavBarComponent.vue");
+/* harmony import */ var _js_components_NotificationComponent__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/js/components/NotificationComponent */ "./js/components/NotificationComponent.vue");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! jquery */ "../../node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_8__);
+
 
 
 
@@ -147,12 +152,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "BaseComponent",
   components: {
-    NotificationComponent: _js_components_NotificationComponent__WEBPACK_IMPORTED_MODULE_6__["default"],
-    NavBarComponent: _js_components_NavBarComponent__WEBPACK_IMPORTED_MODULE_5__["default"],
-    MapComponent: _js_components_MapComponent__WEBPACK_IMPORTED_MODULE_4__["default"]
+    NotificationComponent: _js_components_NotificationComponent__WEBPACK_IMPORTED_MODULE_7__["default"],
+    NavBarComponent: _js_components_NavBarComponent__WEBPACK_IMPORTED_MODULE_6__["default"],
+    MapComponent: _js_components_MapComponent__WEBPACK_IMPORTED_MODULE_5__["default"]
   },
   data: function data() {
     return {
@@ -163,53 +169,67 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   created: function created() {
-    var _this = this;
+    this.init();
+  },
+  methods: {
+    init: function init() {
+      var _this = this;
 
-    return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-      var temp;
-      return regeneratorRuntime.wrap(function _callee$(_context) {
-        while (1) {
-          switch (_context.prev = _context.next) {
-            case 0:
-              _context.next = 2;
-              return _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_3___default.a.send('VKWebAppInit');
+      return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
+        var temp, data;
+        return regeneratorRuntime.wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_4___default.a.send('VKWebAppInit');
 
-            case 2:
-              _context.next = 4;
-              return _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_3___default.a.send('VKWebAppGetUserInfo');
+              case 2:
+                _context.next = 4;
+                return _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_4___default.a.send('VKWebAppGetUserInfo');
 
-            case 4:
-              _this.currentUserInfo = _context.sent;
-              _context.next = 7;
-              return _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_3___default.a.send('VKWebAppGetUserInfo');
+              case 4:
+                _this.currentUserInfo = _context.sent;
+                _context.next = 7;
+                return _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_4___default.a.send('VKWebAppGetUserInfo');
 
-            case 7:
-              temp = _context.sent;
+              case 7:
+                temp = _context.sent;
 
-              if (!temp.hasOwnProperty('first_name')) {
-                _this.has_errors = true;
-              }
+                if (!temp.hasOwnProperty('first_name')) {
+                  _this.has_errors = true;
+                }
 
-              _this.currentUserInfo = temp;
-              _context.next = 12;
-              return _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_3___default.a.send('VKWebAppGetGeodata');
+                _this.currentUserInfo = temp;
+                _context.next = 12;
+                return _vkontakte_vk_bridge__WEBPACK_IMPORTED_MODULE_4___default.a.send('VKWebAppGetGeodata');
 
-            case 12:
-              temp = _context.sent;
+              case 12:
+                temp = _context.sent;
 
-              if (temp.type === 'VKWebAppGeodataFailed') {
-                _this.has_errors = true;
-              }
+                if (temp.type === 'VKWebAppGeodataFailed') {
+                  _this.has_errors = true;
+                }
 
-              _this.currentUserLocation = temp;
+                _this.currentUserLocation = temp;
+                _context.next = 17;
+                return jquery__WEBPACK_IMPORTED_MODULE_8___default.a.ajax({
+                  type: 'GET',
+                  url: "/Api/MapController/MapInit?vkId=".concat(_this.currentUserInfo.id, "&&lat=").concat(_this.currentUserLocation.lat, "&&lon=").concat(_this.currentUserLocation["long"])
+                });
 
-            case 15:
-            case "end":
-              return _context.stop();
+              case 17:
+                data = _context.sent;
+                console.log(data);
+
+              case 19:
+              case "end":
+                return _context.stop();
+            }
           }
-        }
-      }, _callee);
-    }))();
+        }, _callee);
+      }))();
+    }
   },
   computed: {
     authUrl: function authUrl() {
@@ -232,22 +252,19 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.concat */ "../../node_modules/core-js/modules/es.array.concat.js");
-/* harmony import */ var core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_concat__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.number.constructor */ "../../node_modules/core-js/modules/es.number.constructor.js");
-/* harmony import */ var core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.object.to-string */ "../../node_modules/core-js/modules/es.object.to-string.js");
-/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.promise */ "../../node_modules/core-js/modules/es.promise.js");
-/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! regenerator-runtime/runtime */ "../../node_modules/regenerator-runtime/runtime.js");
-/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! jquery */ "../../node_modules/jquery/dist/jquery.js");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var ymaps__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ymaps */ "../../node_modules/ymaps/dist/ymaps.esm.js");
-/* harmony import */ var _icons_circle_nike_round_icon_sports_icon_178227_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/icons/circle-nike-round-icon-sports-icon-178227.png */ "./icons/circle-nike-round-icon-sports-icon-178227.png");
-/* harmony import */ var _icons_fortress_png__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @/icons/fortress.png */ "./icons/fortress.png");
-
+/* harmony import */ var core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.number.constructor */ "../../node_modules/core-js/modules/es.number.constructor.js");
+/* harmony import */ var core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_constructor__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string */ "../../node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.promise */ "../../node_modules/core-js/modules/es.promise.js");
+/* harmony import */ var core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! regenerator-runtime/runtime */ "../../node_modules/regenerator-runtime/runtime.js");
+/* harmony import */ var regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(regenerator_runtime_runtime__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! jquery */ "../../node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var ymaps__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ymaps */ "../../node_modules/ymaps/dist/ymaps.esm.js");
+/* harmony import */ var _icons_circle_nike_round_icon_sports_icon_178227_png__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/icons/circle-nike-round-icon-sports-icon-178227.png */ "./icons/circle-nike-round-icon-sports-icon-178227.png");
+/* harmony import */ var _icons_fortress_png__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @/icons/fortress.png */ "./icons/fortress.png");
 
 
 
@@ -345,21 +362,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     var _this2 = this;
 
     return _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee() {
-      var data;
       return regeneratorRuntime.wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
             case 0:
-              _context.next = 2;
-              return jquery__WEBPACK_IMPORTED_MODULE_5___default.a.ajax({
-                type: 'GET',
-                url: "/Api/MapController/MapInit?vkId=".concat(_this2.vkId, "&&lat=").concat(_this2.location.lat, "&&lon=").concat(_this2.location["long"])
-              });
-
-            case 2:
-              data = _context.sent;
-              console.log(data);
-              ymaps__WEBPACK_IMPORTED_MODULE_6__["default"].load('https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=f8732bc7-6ffa-445d-a447-abc4f837cdac').then(function (maps) {
+              ymaps__WEBPACK_IMPORTED_MODULE_5__["default"].load('https://api-maps.yandex.ru/2.1/?lang=ru_RU&apikey=f8732bc7-6ffa-445d-a447-abc4f837cdac').then(function (maps) {
                 _this2.myMap = new maps.Map('map', {
                   // center: [this.location.lat, this.location.long],
                   center: [55.73, 37.75],
@@ -376,9 +383,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                 _this2.drawPolygon(maps, [[55.75, 37.50], [55.80, 37.60], [55.75, 37.70], [55.70, 37.70], [55.70, 37.50]], 'Зона комфорта');
 
-                _this2.drawImage(maps, _icons_circle_nike_round_icon_sports_icon_178227_png__WEBPACK_IMPORTED_MODULE_7__["default"], [55.73, 37.75], 'Ивентовая башня', 'Захватите башню');
+                _this2.drawImage(maps, _icons_circle_nike_round_icon_sports_icon_178227_png__WEBPACK_IMPORTED_MODULE_6__["default"], [55.73, 37.75], 'Ивентовая башня', 'Захватите башню');
 
-                _this2.drawImage(maps, _icons_fortress_png__WEBPACK_IMPORTED_MODULE_8__["default"], [55.79, 37.75], 'Башня', 'Захватите башню');
+                _this2.drawImage(maps, _icons_fortress_png__WEBPACK_IMPORTED_MODULE_7__["default"], [55.79, 37.75], 'Башня', 'Захватите башню');
 
                 _this2.drawPolyLine(maps, [// Указываем координаты вершин.
                 [55.80, 37.50], [55.80, 37.40], [55.70, 37.50], [55.70, 37.40]]);
@@ -386,7 +393,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 return console.log('Failed to load Yandex Maps', error);
               });
 
-            case 5:
+            case 1:
             case "end":
               return _context.stop();
           }
