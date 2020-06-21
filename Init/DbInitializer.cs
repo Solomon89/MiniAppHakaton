@@ -30,8 +30,8 @@ namespace MiniAppHakaton.Init
             if (_context.Buildings.ToList().Count == 0)
             {
                 _context.Buildings.AddRange(new List<Models.Dictionary.Building> {
-                    new Models.Dictionary.Building { Id = 31, Name = "Башня славы великих дотнетчиков",  Icon = "fortress.png"},
-                    new Models.Dictionary.Building { Id = 32, Name = "Башня славы великих джавистов",  Icon = "fortress.png"}
+                    new Models.Dictionary.Building { Id = 31, Name = "Башня славы великих дотнетчиков",  Icon = "fortress.png", InfluenceRadius = 5},
+                    new Models.Dictionary.Building { Id = 32, Name = "Башня славы великих джавистов",  Icon = "fortress.png", InfluenceRadius = 10}
                 });
             }
 
@@ -52,7 +52,7 @@ namespace MiniAppHakaton.Init
             if (_context.ApplicationUsers.Find(12) == null)
             {
                 _context.ApplicationUsers.Add(
-                   new Models.Identity.ApplicationUser { Id = 12, VKId = "168260221", Color = "пастельный зеленый цвет", Gold = 104000 }
+                   new Models.Identity.ApplicationUser { Id = 12, VKId = "168260221", Color = "ff00ff", Gold = 104000 }
                );
             }
 
