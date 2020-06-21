@@ -12,7 +12,9 @@
 
             <ul>
                 <li><a :href="authUrl">Войти в STRAVA</a></li>
-                <li><a>Загрузить мои последние маршруты</a></li>
+                <li><a>Маршруты</a></li>
+                <li><a>События</a></li>
+                <li><a>Кланы</a></li>
             </ul>
         </nav>
 
@@ -203,6 +205,15 @@
             list-style: none;
             margin: 0 0 auto;
             padding: 0;
+        }
+    }
+
+
+    @media all and (max-width: 600px) {
+        .nav {
+            width: 100vw;
+            left: -100vw;
+
         }
     }
 

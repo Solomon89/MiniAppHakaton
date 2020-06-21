@@ -12606,6 +12606,16 @@ h3 {
     border-color: #dee2e6;
   }
 }
+@media all and (min-width: 540px) and (max-width: 768px) {
+  html {
+    font-size: 14px;
+  }
+}
+@media all and (max-width: 540px) {
+  html {
+    font-size: 12px;
+  }
+}
 #map[data-v-713f44c2] {
   width: 100vw;
   height: 100vh;
@@ -12726,6 +12736,12 @@ a[data-v-72ee52bc]:hover {
   list-style: none;
   margin: 0 0 auto;
   padding: 0;
+}
+@media all and (max-width: 600px) {
+.nav[data-v-72ee52bc] {
+    width: 100vw;
+    left: -100vw;
+}
 }
 .modal[data-v-e8168f3e] {
   display: block;
