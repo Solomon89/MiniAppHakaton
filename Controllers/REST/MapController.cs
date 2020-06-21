@@ -77,5 +77,33 @@ namespace MiniAppHakaton.Controllers.REST
             //events.ToList();
             return Ok(new { buildings = buildings });
         }
+
+        [HttpGet]
+        [Route ("Quest")]
+        public IActionResult Quest(int eventId)
+        {
+            var taskTrack = from Event in _context.Events 
+                           join Quest in _context.Quests on Event.Id equals Quest.EventId
+                           join Track in _context.Tracks on Quest.TrackId equals Track.Id
+                           where Event.Id == eventId
+                            select new
+                           {
+                               id = Track.Id,
+                               dist = Track.Distance,
+                               time = Track.Time,
+                               average_speed = Track.Time,
+                               Points = (from TracPoints in _context.TracksPoints
+                                         join Points in _context.Points on TracPoints.PointId equals Points.Id
+                                         where TracPoints.TrackId == Track.Id
+                                         select new
+                                         {
+                                             id = Points.Id,
+                                             lat = Points.Lat,
+                                             lon = Points.Lon
+                                         }).ToList()
+                           };
+
+            return Ok(new { taskTrask = taskTrack});
+        }
     }
 }
