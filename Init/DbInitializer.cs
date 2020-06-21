@@ -36,9 +36,33 @@ namespace MiniAppHakaton.Init
                 new Models.Events.Event { Id = 13, Name = "Супер модный забег от Nike, во имя запуска ConquerRun", Icon = "fortress.png", CreatedAt = DateTime.Now, UpdatedAt = DateTime.Now, Reward = 1000, EventDateTime = DateTime.Now + TimeSpan.FromHours(20) }
             );
 
+            _context.Mobs.Add(
+                new Models.Dictionary.Mob { Id = 43, Name = "Безсонная ночь", Icon = "mobIcon.png", Reward = 150000 }
+            );
 
 
+            _context.ApplicationUsers.Add(
+               new Models.Identity.ApplicationUser { Id = 12, VKId = "168260221", Color = "пастельный зеленый цвет", Gold = 104000 }
+           );
 
+            _context.UserBuildings.Add(
+               new Models.Users.UserBuildings { UserId = 12, BuildingId = 31 }
+           );
+
+            _context.BuildingPoints.Add(
+               new Models.Geomethry.BuildingPoints { PointId = 23, BuildingId = 31 }
+               );
+
+            _context.EventPoints.Add(
+               new Models.Events.EventPoints { EventId = 13, PontId = 24 }
+           );
+            
+            _context.MobPoints.Add(
+               new Models.Geomethry.MobPoints { MobId = 43, PointId = 24 }
+           );
+
+
+            _context.SaveChanges();
 
 
         }
