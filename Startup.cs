@@ -44,6 +44,7 @@ namespace MiniAppHakaton
 
 
            services.AddTransient<Bootstrap.Bootstrap>();
+           services.AddTransient<Init.DbInitializer>();
 
 
             services.AddControllersWithViews();

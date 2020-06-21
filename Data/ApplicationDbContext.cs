@@ -229,7 +229,7 @@ namespace MiniAppHakaton.Data
                  .HasColumnName("created_at");
 
                 entity.Property(e => e.UpdatedAt)
-                 .HasColumnName("created_at");
+                 .HasColumnName("updated_at");
 
                 entity.Property(e => e.EventDateTime)
                  .HasColumnName("date_time");
@@ -366,7 +366,7 @@ namespace MiniAppHakaton.Data
                  .HasColumnName("lat");
 
                 entity.Property(e => e.Lon)
-                 .HasColumnName("lat");
+                 .HasColumnName("lon");
 
             });
 

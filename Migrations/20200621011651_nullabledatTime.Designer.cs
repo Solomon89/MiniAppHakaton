@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MiniAppHakaton.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -9,9 +10,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MiniAppHakaton.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200621011651_nullabledatTime")]
+    partial class nullabledatTime
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -279,7 +281,7 @@ namespace MiniAppHakaton.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnName("created_at")
                         .HasColumnType("timestamp without time zone");
 
@@ -287,7 +289,7 @@ namespace MiniAppHakaton.Migrations
                         .HasColumnName("created_by")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("EventDateTime")
+                    b.Property<DateTime?>("EventDateTime")
                         .HasColumnName("date_time")
                         .HasColumnType("timestamp without time zone");
 
@@ -304,8 +306,8 @@ namespace MiniAppHakaton.Migrations
                         .HasColumnName("reward")
                         .HasColumnType("double precision");
 
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnName("updated_at")
+                    b.Property<DateTime?>("UpdatedAt")
+                        .HasColumnName("created_at")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int?>("UpdatedById")
@@ -467,7 +469,7 @@ namespace MiniAppHakaton.Migrations
                         .HasColumnType("double precision");
 
                     b.Property<double>("Lon")
-                        .HasColumnName("lon")
+                        .HasColumnName("lat")
                         .HasColumnType("double precision");
 
                     b.HasKey("Id")
@@ -725,7 +727,7 @@ namespace MiniAppHakaton.Migrations
                         .HasColumnName("user_id")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("CreatedAt")
+                    b.Property<DateTime?>("CreatedAt")
                         .HasColumnName("created_at")
                         .HasColumnType("timestamp without time zone");
 
@@ -736,7 +738,7 @@ namespace MiniAppHakaton.Migrations
                         .HasColumnName("state")
                         .HasColumnType("integer");
 
-                    b.Property<DateTime>("UpdatedAt")
+                    b.Property<DateTime?>("UpdatedAt")
                         .HasColumnName("updated_at")
                         .HasColumnType("timestamp without time zone");
 
