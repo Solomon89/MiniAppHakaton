@@ -33,15 +33,16 @@ namespace MiniAppHakaton.Controllers.REST
                  //            where (UserId == query.request.data.User.Id)
                  //            select 
 
-                 trackList = from TracksPoints in _context.Track
+                trackList = from TracksPoints in _context.Track
 
-                 return Ok(trackList);
-             }
-             else
-             {*/
-            return Ok();
-            //}
-
+                return Ok(trackList);
+            }
+            else
+            {
+                return 
+            }
+            */
+            return null;
         }
     }
 }

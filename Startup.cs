@@ -15,6 +15,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using MiniAppHakaton.Data;
 using MiniAppHakaton.Models.Identity;
+using AspNetCore.OAuth.Provider.Strava;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace MiniAppHakaton
 {
@@ -34,7 +36,7 @@ namespace MiniAppHakaton
                 options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
 
-            services.AddIdentity<ApplicationUser, IdentityRole<int>>(options =>
+            services.AddIdentity<User, IdentityRole<int>>(options =>
                     options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddRoles<IdentityRole<int>>()
@@ -42,6 +44,7 @@ namespace MiniAppHakaton
 
 
            services.AddTransient<Bootstrap.Bootstrap>();
+           services.AddTransient<Init.DbInitializer>();
 
 
             services.AddControllersWithViews();

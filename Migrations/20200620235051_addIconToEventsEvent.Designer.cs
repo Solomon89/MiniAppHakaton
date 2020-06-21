@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MiniAppHakaton.Data;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -9,9 +10,10 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace MiniAppHakaton.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20200620235051_addIconToEventsEvent")]
+    partial class addIconToEventsEvent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -305,7 +307,7 @@ namespace MiniAppHakaton.Migrations
                         .HasColumnType("double precision");
 
                     b.Property<DateTime>("UpdatedAt")
-                        .HasColumnName("updated_at")
+                        .HasColumnName("created_at")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<int?>("UpdatedById")
@@ -467,7 +469,7 @@ namespace MiniAppHakaton.Migrations
                         .HasColumnType("double precision");
 
                     b.Property<double>("Lon")
-                        .HasColumnName("lon")
+                        .HasColumnName("lat")
                         .HasColumnType("double precision");
 
                     b.HasKey("Id")
@@ -530,53 +532,14 @@ namespace MiniAppHakaton.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnName("id")
-                        .HasColumnType("integer")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
-
-                    b.Property<string>("Color")
-                        .HasColumnName("color")
-                        .HasColumnType("text");
-
-                    b.Property<double>("Gold")
-                        .HasColumnName("gold")
-                        .HasColumnType("double precision");
-
-                    b.Property<string>("StravaAccessToken")
-                        .HasColumnType("text");
-
-                    b.Property<long>("StravaExpires")
-                        .HasColumnName("strava_access_token")
-                        .HasColumnType("bigint");
-
-                    b.Property<int>("StravaId")
-                        .HasColumnName("strava_id")
-                        .HasColumnType("integer");
-
-                    b.Property<string>("StravaRefreshToken")
-                        .HasColumnName("strava_refresh_token")
-                        .HasColumnType("text");
-
-                    b.Property<string>("VKId")
-                        .HasColumnName("vk_id")
-                        .HasColumnType("character varying(255)")
-                        .HasMaxLength(255);
-
-                    b.HasKey("Id")
-                        .HasName("users_user_PK");
-
-                    b.ToTable("user","users");
-                });
-
-            modelBuilder.Entity("MiniAppHakaton.Models.Identity.User", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("integer");
+
+                    b.Property<string>("Color")
+                        .HasColumnType("text");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -588,6 +551,9 @@ namespace MiniAppHakaton.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("boolean");
+
+                    b.Property<double>("Gold")
+                        .HasColumnType("double precision");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("boolean");
@@ -615,12 +581,27 @@ namespace MiniAppHakaton.Migrations
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("text");
 
+                    b.Property<string>("StravaAccessToken")
+                        .HasColumnType("text");
+
+                    b.Property<long>("StravaExpires")
+                        .HasColumnType("bigint");
+
+                    b.Property<int>("StravaId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("StravaRefreshToken")
+                        .HasColumnType("text");
+
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("boolean");
 
                     b.Property<string>("UserName")
                         .HasColumnType("character varying(256)")
                         .HasMaxLength(256);
+
+                    b.Property<string>("VKId")
+                        .HasColumnType("text");
 
                     b.HasKey("Id");
 
@@ -631,7 +612,7 @@ namespace MiniAppHakaton.Migrations
                         .IsUnique()
                         .HasName("UserNameIndex");
 
-                    b.ToTable("AspNetUsers");
+                    b.ToTable("User","identity");
                 });
 
             modelBuilder.Entity("MiniAppHakaton.Models.Users.UserAchivment", b =>
@@ -761,7 +742,7 @@ namespace MiniAppHakaton.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<int>", b =>
                 {
-                    b.HasOne("MiniAppHakaton.Models.Identity.User", null)
+                    b.HasOne("MiniAppHakaton.Models.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -770,7 +751,7 @@ namespace MiniAppHakaton.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<int>", b =>
                 {
-                    b.HasOne("MiniAppHakaton.Models.Identity.User", null)
+                    b.HasOne("MiniAppHakaton.Models.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -785,7 +766,7 @@ namespace MiniAppHakaton.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("MiniAppHakaton.Models.Identity.User", null)
+                    b.HasOne("MiniAppHakaton.Models.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -794,7 +775,7 @@ namespace MiniAppHakaton.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<int>", b =>
                 {
-                    b.HasOne("MiniAppHakaton.Models.Identity.User", null)
+                    b.HasOne("MiniAppHakaton.Models.Identity.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
