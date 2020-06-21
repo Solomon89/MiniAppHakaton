@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using MiniAppHakaton.Core;
 using MiniAppHakaton.Data;
 using MiniAppHakaton.Models;
+using MiniAppHakaton.Models.Strava;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -60,15 +61,56 @@ namespace MiniAppHakaton.Controllers
                 var responseString = await response.Content.ReadAsStringAsync();
                 StravaModelToken ModelToken = JsonSerializer.Deserialize<StravaModelToken>(responseString);
                 ViewData.Model = ModelToken.access_token;
+                _modelToken = ModelToken;
                 //AplicatuinUser user = _userManager.Users.ToList().Find(user => user.VKId == vkId);
                 //user.
+                return new JsonResult(ModelToken);
             }
             catch (Exception ex)
             {
                 ViewData.Model = ex.Message;
             }
             //// Display the status.
-           return new JsonResult(VkId);
+            return null;
+        }
+        private static StravaModelToken _modelToken;
+        public async Task<JsonResult> GetLastTrack(int Vkid, string access_token)
+        {
+            try
+            {
+                WebRequest request = WebRequest.Create("https://www.strava.com/api/v3/athlete/activities?per_page=5");
+                request.Method = "Get";
+                request.Headers.Add("Authorization", "Bearer " + access_token);
+               
+                var response = request.GetResponse();
+                string responseFromServer;
+                using (Stream dataStream = response.GetResponseStream())
+                {
+                    // Open the stream using a StreamReader for easy access.
+                    StreamReader reader = new StreamReader(dataStream);
+                    // Read the content.
+                    responseFromServer = reader.ReadToEnd();
+                    // Display the content.
+                    
+                }
+
+                if (!responseFromServer.Contains("Authorization Error"))
+                {
+                    List<activities> activities = JsonSerializer.Deserialize<List<activities>>(responseFromServer);
+                    return new JsonResult(activities);
+                }
+                else
+                {
+                    return new JsonResult("Проблемы с токеном");
+                }
+
+
+            }
+            catch (Exception ex)
+            {
+                return new JsonResult(ex.Message);
+            }
+            return null;
         }
         public async Task<string> GetDataFromBody(HttpResponse Response)
         {
