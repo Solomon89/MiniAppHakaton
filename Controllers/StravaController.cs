@@ -63,7 +63,7 @@ namespace MiniAppHakaton.Controllers
                 StravaModelToken ModelToken = JsonSerializer.Deserialize<StravaModelToken>(responseString);
                 ViewData.Model = ModelToken.access_token;
                 _modelToken = ModelToken;
-                _context.Users.Add(new ApplicationUser() { VKId = Id, StravaAccessToken = _modelToken.access_token });
+                _context.ApplicationUsers.Add(new ApplicationUser() { VKId = Id, StravaAccessToken = _modelToken.access_token });
                 _context.SaveChanges();
                 return new JsonResult(ModelToken);
             }
@@ -77,7 +77,7 @@ namespace MiniAppHakaton.Controllers
         private static StravaModelToken _modelToken;
         public JsonResult GetLastTrack(string Vkid)
         {
-            ApplicationUser user = _context.Users.FirstOrDefault(i => i.VKId == Vkid);
+            ApplicationUser user = _context.ApplicationUsers.FirstOrDefault(i => i.VKId == Vkid);
             if (user != null)
             {
                 try
