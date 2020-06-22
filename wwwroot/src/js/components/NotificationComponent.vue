@@ -9,7 +9,8 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <div class="modal-body" v-html="body_text">
+                <div class="modal-body">
+                    <a target="_blank" :href="authUrl" @click="$emit('closed')" class="btn btn-primary">Войти в STRAVA</a>
                 </div>
             </div>
         </div>
@@ -25,6 +26,10 @@
             vkId: Number
         },
         computed: {
+            authUrl() {
+                // return `/Strava/AuthInStrava?VkId=${this.currentUserInfo.id}`
+                return `https://www.strava.com/oauth/authorize?client_id=49974&response_type=code&redirect_uri=https://user209080935-wkeocojg.wormhole.vk-apps.com/strava/exchange_token/${this.vkId}&approval_prompt=force&scope=read,activity:read`
+            },
         }
     }
 </script>

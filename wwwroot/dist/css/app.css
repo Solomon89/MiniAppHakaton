@@ -12748,6 +12748,12 @@ a[data-v-72ee52bc]:hover {
 .modal[data-v-e8168f3e] {
   display: block;
 }
+.modal[data-v-adc2987e] {
+  display: block;
+}
+tbody[data-v-adc2987e] {
+  font-size: 12px;
+}
 .cover-wrapper[data-v-291e318a] {
   /*pointer-events: none;*/
   position: absolute;

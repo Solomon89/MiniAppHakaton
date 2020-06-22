@@ -65,17 +65,7 @@
                             contentBody: `<div>Приступить к выполнению <br>этой задачи?</div><button data-color="${color}" data-event-id="${id}" data-event-type="${type}" class="taskSelectionConfirmation btn btn-info">Приступить</button>`
                         }
                     )
-                    $('.taskSelectionConfirmation').click(async (e) => {
-                        let target = $(e.target);
-                        let id = target.attr('data-event-id')
-                        let type = target.attr('data-event-type')
-                        let color = target.attr('data-color')
-                        let data = await $.ajax({
-                            type: 'GET',
-                            url: `/Api/MapController/EventQuest?eventId=${id}&&type=${type}`,
-                        });
-                        this.drawPolyLine(this.maps, data, color)
-                    })
+
                     // let coords = e.get('coords');
                     // alert(coords.join(', '));
                 });
@@ -123,7 +113,6 @@
                 this.myMap.behaviors.disable('scrollZoom')
                 this.myMap.behaviors.disable('multiTouch')
                 this.myMap.behaviors.disable('dblClickZoom')
-
                 for (let elem of this.npcInfo.buildings) {
                     let color = '#808080'
                     if ((elem.user !== undefined && elem.user !== null) && (elem.user.color !== undefined && elem.user.color !== null)) {
@@ -146,25 +135,24 @@
                     }
                     this.drawImage(maps, '/src/icons/' + elem.icon, [elem.lat, elem.lon], elem.name, color, elem.id)
                 }
-                // this.drawPolygon(maps, [
-                //     [55.75, 37.50],
-                //     [55.80, 37.60],
-                //     [55.75, 37.70],
-                //     [55.70, 37.70],
-                //     [55.70, 37.50],
-                //
-                // ], 'Зона комфорта')
-                // this.drawImage(maps, nikeIcon, [55.73, 37.75], 'Ивентовая башня', 'Захватите башню')
-                // this.drawImage(maps, fortressIcon, [55.79, 37.75], 'Башня', 'Захватите башню')
-                // this.drawPolyLine(maps, [
-                //     // Указываем координаты вершин.
-                //     [55.80, 37.50],
-                //     [55.80, 37.40],
-                //     [55.70, 37.50],
-                //     [55.70, 37.40]
-                // ])
             })
                 .catch(error => console.log('Failed to load Yandex Maps', error));
+        },
+        mounted() {
+            setInterval(() => {
+                $('.taskSelectionConfirmation').on('click', async (e) => {
+                    let target = $(e.target);
+                    let id = target.attr('data-event-id')
+                    let type = target.attr('data-event-type')
+                    let color = target.attr('data-color')
+                    let data = await $.ajax({
+                        type: 'GET',
+                        url: `/Api/MapController/EventQuest?eventId=${id}&&type=${type}`,
+                    });
+                    this.drawPolyLine(this.maps, data, color)
+                    $('balloon__close-button').click()
+                })
+            }, 1000)
         }
     }
 </script>

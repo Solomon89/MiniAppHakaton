@@ -12,7 +12,7 @@
 
             <ul>
                 <li><a :href="authUrl">Войти в STRAVA</a></li>
-                <li><a>Маршруты</a></li>
+                <li><a @click="router">Маршруты</a></li>
                 <li><a>События</a></li>
                 <li><a>Кланы</a></li>
             </ul>
@@ -53,6 +53,15 @@
         computed: {
             authUrl() {
                 return `Strava/AuthInStrava?VkId=${this.vkId}`
+            }
+        },
+        methods: {
+            router() {
+                let nav = document.querySelector('#nav');
+                let navToggle = document.querySelector('.nav-toggle');
+                navToggle.classList.remove('expanded');
+                nav.classList.remove('expanded');
+                this.$emit('show-router')
             }
         }
     }
